@@ -1,15 +1,12 @@
 import Topbar from "../components/Topbar";
-import Carousel from "../components/Carousel";
-import ItemGrid from "../components/Search/ItemGrid";
-import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { homePage_RecentlyPopular, homePage_TodaySelected } from "../fetcher";
+
 export default function Home() {
   
 
   return (
     <div>
-      <Topbar />
+      hi
+      {/* <Topbar />
       <Carousel />
       <div class="uk-section uk-section-default">
         <div class="uk-container uk-container-small">
@@ -76,7 +73,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
