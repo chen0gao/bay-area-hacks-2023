@@ -1,4 +1,3 @@
-
 export default function SignUp() {
   return (
     <div>
@@ -8,6 +7,11 @@ export default function SignUp() {
           data-uk-height-viewport=""
         >
           <div class="uk-width-3-4@s">
+            <div class="uk-text-center uk-margin-bottom">
+              <a class="uk-logo uk-text-primary uk-text-bold" href="index.html">
+                Kocina
+              </a>
+            </div>
             <div class="uk-text-center uk-margin-medium-bottom">
               <h1 class="uk-h2 uk-letter-spacing-small">Create an Account</h1>
             </div>
@@ -65,7 +69,7 @@ export default function SignUp() {
           <div class="uk-inline">
             <img
               class="uk-border-rounded-large"
-              src="http://reneeroaming.com/wp-content/uploads/2020/08/Best-National-Park-Road-Trip-Itinerary-Grand-Teton-National-Park-Van-Life-819x1024.jpg"
+              src="https://www.fodors.com/wp-content/uploads/2020/07/jake-blucker-tMzCrBkM99Y-unsplash-desktop-crop.jpg"
               width="1200"
               height="1800"
               alt=""
@@ -91,27 +95,6 @@ export default function SignUp() {
               </div>
             </div>
           </div>
-
-          {/* <div class="uk-background-cover uk-background-norepeat uk-background-blend-overlay uk-background-overlay uk-border-rounded-large uk-width-1-1 uk-height-xlarge uk-flex uk-flex-middle uk-flex-center"></div>
-          <div class="uk-padding-large">
-            <div class="uk-text-center">
-              <h2 class="uk-letter-spacing-small">Welcome Back</h2>
-            </div>
-            <div class="uk-margin-top uk-margin-medium-bottom uk-text-center">
-              <p>
-                Already signed up, enter your details and start cooking your
-                first meal today
-              </p>
-            </div>
-            <div class="uk-width-1-1 uk-text-center">
-              <a
-                href="sign-in.html"
-                class="uk-button uk-button-primary uk-button-large"
-              >
-                Sign In
-              </a>
-            </div>
-          </div> */}
         </div>
       </div>
     </div>

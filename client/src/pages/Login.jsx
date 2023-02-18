@@ -14,34 +14,8 @@ export default function Login() {
           <div class="uk-text-center uk-margin-medium-bottom">
             <h1 class="uk-h2 uk-letter-spacing-small">Sign In to Kocina</h1>
           </div>
-          <div
-            data-uk-grid=""
-            class="uk-child-width-auto uk-grid-small uk-flex uk-flex-center uk-margin"
-          >
-            <div>
-              <a
-                href="#"
-                data-uk-icon="icon: facebook"
-                class="uk-icon-button uk-icon-button-large facebook"
-              ></a>
-            </div>
-            <div>
-              <a
-                href="#"
-                data-uk-icon="icon: google-plus"
-                class="uk-icon-button uk-icon-button-large google-plus"
-              ></a>
-            </div>
-            <div>
-              <a
-                href="#"
-                data-uk-icon="icon: linkedin"
-                class="uk-icon-button uk-icon-button-large linkedin"
-              ></a>
-            </div>
-          </div>
           <div class="uk-text-center uk-margin">
-            <p class="uk-margin-remove">Or use your email account:</p>
+            <p class="uk-margin-remove">use your email account:</p>
           </div>
           <form class="uk-text-center">
             <div class="uk-width-1-1 uk-margin">
@@ -79,32 +53,45 @@ export default function Login() {
           </form>
         </div>
       </div>
+
       <div
-        class="uk-width-1-2@m uk-padding-large uk-flex uk-flex-middle uk-flex-center uk-light"
-        data-uk-height-viewport=""
-      >
-        <div
-          class="uk-background-cover uk-background-norepeat uk-background-blend-overlay uk-background-overlay uk-border-rounded-large uk-width-1-1 uk-height-xlarge uk-flex uk-flex-middle uk-flex-center"
-          style="background-image: url(static/picture/600x700.jpg)"
+          class="uk-width-1-2@m uk-padding-large uk-flex uk-flex-middle uk-flex-center uk-light"
+          data-uk-height-viewport=""
         >
-          <div class="uk-padding-large">
-            <div class="uk-text-center">
-              <h2 class="uk-letter-spacing-small">Hello There, Join Us</h2>
-            </div>
-            <div class="uk-margin-top uk-margin-medium-bottom uk-text-center">
-              <p>Enter your personal details and join the cooking community</p>
-            </div>
-            <div class="uk-width-1-1 uk-text-center">
-              <a
-                href="sign-up.html"
-                class="uk-button uk-button-primary uk-button-large"
-              >
-                Sign Up
-              </a>
+          <div class="uk-inline">
+            <img
+              class="uk-border-rounded-large"
+              src="https://lp-cms-production.imgix.net/2022-09/shutterstock_1821773909.jpg?auto=format&q=75&w=3840"
+              width="1200"
+              height="1800"
+              alt=""
+            />
+            <div class="uk-overlay-primary uk-position-cover uk-border-rounded-large"></div>
+            <div class="uk-overlay uk-position-bottom uk-dark">
+              <div class="uk-text-center">
+                <h2 class="uk-letter-spacing-small">Hello There, Join Us</h2>
+              </div>
+              <div class="uk-margin-top uk-margin-medium-bottom uk-text-center">
+                <p>
+                  Enter your personal details and join our community
+                </p>
+                <div class="uk-width-1-1 uk-text-center">
+                  <a
+                    href="sign-in.html"
+                    class="uk-button uk-button-primary uk-button-large"
+                  >
+                    Sign Up
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      
     </div>
   );
 }
+
+
+
+
