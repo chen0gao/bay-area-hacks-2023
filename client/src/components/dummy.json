@@ -1,0 +1,37 @@
+{
+  "recipe": {
+    "AggregatedRating": 4.5,
+    "Calories": 170.9,
+    "CarbohydrateContent": 37.1,
+    "CholesterolContent": 8,
+    "CookTime": "1 days 00:00:00",
+    "DatePublished": "1999-08-09 21:46:00+00:00",
+    "Description": "Make and share this Low-Fat Berry Blue Frozen Dessert recipe from Food.com.",
+    "FatContent": 2.5,
+    "FiberContent": 3.6,
+    "Images": "['https://img.sndimg.com/food/image/upload/w_555,h_416,c_fit,fl_progressive,q_95/v1/img/recipes/38/YUeirxMLQaeE1h3v3qnM_229%20berry%20blue%20frzn%20dess.jpg'\n 'https://img.sndimg.com/food/image/upload/w_555,h_416,c_fit,fl_progressive,q_95/v1/img/recipes/38/AFPDDHATWzQ0b1CDpDAT_255%20berry%20blue%20frzn%20dess.jpg'\n 'https://img.sndimg.com/food/image/upload/w_555,h_416,c_fit,fl_progressive,q_95/v1/img/recipes/38/UYgf9nwMT2SGGJCuzILO_228%20berry%20blue%20frzn%20dess.jpg'\n 'https://img.sndimg.com/food/image/upload/w_555,h_416,c_fit,fl_progressive,q_95/v1/img/recipes/38/PeBMJN2TGSaYks2759BA_20140722_202142.jpg'\n 'https://img.sndimg.com/food/image/upload/w_555,h_416,c_fit,fl_progressive,q_95/v1/img/recipes/38/picuaETeN.jpg'\n 'https://img.sndimg.com/food/image/upload/w_555,h_416,c_fit,fl_progressive,q_95/v1/img/recipes/38/pictzvxW5.jpg']",
+    "Keywords": "['Dessert' 'Low Protein' 'Low Cholesterol' 'Healthy' 'Free Of...' 'Summer'\n 'Weeknight' 'Freezer' 'Easy']",
+    "Name": "Low-Fat Berry Blue Frozen Dessert",
+    "NumOfSteps": 9,
+    "PrepTime": "0 days 00:45:00",
+    "ProteinContent": 3.2,
+    "RecipeCategory": "Frozen Desserts",
+    "RecipeId": 38,
+    "RecipeInstructions": "['Toss 2 cups berries with sugar.'\n 'Let stand for 45 minutes, stirring occasionally.'\n 'Transfer berry-sugar mixture to food processor.'\n 'Add yogurt and process until smooth.'\n \"Strain through fine sieve. Pour into baking pan (or transfer to ice cream maker and process according to manufacturers' directions). Freeze uncovered until edges are solid but centre is soft.  Transfer to processor and blend until smooth again.\"\n 'Return to pan and freeze until edges are solid.'\n 'Transfer to processor and blend until smooth again.'\n 'Fold in remaining 2 cups of blueberries.'\n 'Pour into plastic mold and freeze overnight. Let soften slightly to serve.']",
+    "RecipeServings": 4,
+    "RecipeYield": null,
+    "ReviewCount": 4,
+    "SaturatedFatContent": 1.3,
+    "SodiumContent": 29.8,
+    "SugarContent": 30.2,
+    "TotalTime": "1 days 00:45:00",
+    "ingredient": "[\"4   cups    blueberries, fresh or frozen \",\"1/4  cup    granulated sugar\",\"1   cup"
+  },
+  "search": {
+    "Name": "Place Holder",
+    "Images": "[\"static/picture/300x160.jpg\"]",
+    "AvgRating": 5,
+    "Comment": 39,
+    "Author": "Test"
+  }
+}

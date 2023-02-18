@@ -1,0 +1,9 @@
+{
+    "rds_host": "sample.c9u33swkcsj4.us-east-1.rds.amazonaws.com",
+    "rds_port": "3306",
+    "rds_user": "food",
+    "rds_password" : "t!$2Z&s*Sf^2dvA",
+    "rds_db": "recipes",
+    "server_host": "127.0.0.1",
+    "server_port":"8080"
+}
