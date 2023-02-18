@@ -5,17 +5,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { homePage_RecentlyPopular, homePage_TodaySelected } from "../fetcher";
 export default function Home() {
-  const [recently, setRecently] = useState([]);
-  const [today, setToday] = useState([]);
-
-  useEffect(() => {
-    homePage_RecentlyPopular().then((res) => {
-      setRecently(res);
-    });
-    homePage_TodaySelected().then((res) => {
-      setToday(res);
-    });
-  }, []);
+  
 
   return (
     <div>
