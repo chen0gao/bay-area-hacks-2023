@@ -1,16 +1,12 @@
-import { useContext, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useRef, useEffect} from "react";
+import { useNavigate, Link } from "react-router-dom";
 import { login } from "../apiCalls";
 import Topbar from "../components/Topbar";
-import { Link } from "react-router-dom";
 
 export default function Login() {
   const email = useRef();
   const password = useRef();
   const navigate = useNavigate();
-  // const [user, setUser] = useState(null);
-  // const {user, isFetching, dispatch} = useContext(AuthContext);
   useEffect(() => {
     if (localStorage.getItem("user_info")) {
       navigate("/");
