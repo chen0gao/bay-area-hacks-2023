@@ -9,6 +9,7 @@ import SearchNearByBtn from "./components/SearchNearByBtn";
 import AutoCompleteInput from "./components/AutoCompleteInput";
 import Clicker from "./components/Clicker";
 import { config } from "./config";
+import InputForm from "./components/InputForm";
 
 function App() {
   const [locations, setLocations] = useState([]);
@@ -20,6 +21,8 @@ function App() {
   const [autoCompleteMarker, setAutoCompleteMarker] = useState(null);
 
   const [route, setRoute] = useState({});
+  const [numTravellers, setNumTravellers] = useState("");
+  const [businessType, setBusinessType] = useState("");
 
   function onScriptLoad() {
     // Initializing Map components
@@ -110,9 +113,10 @@ function App() {
     <>
       <CssBaseline />
       <Header />
-      <Grid container spacing={3} style={{ width: "100%" }}>
-        <Grid item xs={12} md={6}>
-          {/* <Search /> */}
+      <Grid container spacing={3} sx={{ overflow: 'auto', maxHeight: '90vh%' }}>
+        <Grid item xs={12} md={3}>
+          <InputForm numTravellers={numTravellers} setNumTravellers={setNumTravellers}
+            businessType={businessType} setBusinessType={setBusinessType} />
           <AutoCompleteInput
             index={0}
             map={map}
@@ -150,6 +154,9 @@ function App() {
             setNearByLocation={setNearByLocation}
           />
           <Clicker clicker={clicker} setLocations={setLocations} />
+        </Grid>
+        <Grid item xs={12} md={3}>
+          <div>text</div>
         </Grid>
         <Grid item xs={12} md={6}>
           <div style={{ width: 900, height: "85vh" }} id="map" />
