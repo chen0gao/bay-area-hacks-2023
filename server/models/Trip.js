@@ -6,7 +6,14 @@ const TripSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    //need to be done
+    tripName:{
+      type: String,
+      required: true,
+    }, 
+    tripDate:{
+      type: String,
+      required: true,
+    }
   },
   { timestamps: true }
 );

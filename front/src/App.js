@@ -1,6 +1,7 @@
 import "./static/App.css";
 import React, { useState, useEffect } from "react";
 import SearchBoxResult from "./components/SearchBoxResult";
+import Trip from "./components/Trip/Trip";
 import { Box, CssBaseline, Grid } from "@material-ui/core";
 // import SearchIcon from '@material-ui/icons/Search';
 import Header from "./components/Header/Header";
@@ -9,6 +10,7 @@ import SearchNearByBtn from "./components/SearchNearByBtn";
 import AutoCompleteInput from "./components/AutoCompleteInput";
 import Clicker from "./components/Clicker";
 import { config } from "./config";
+import TripHistory from "./components/TripHistory";
 import InputForm from "./components/InputForm";
 
 function App() {
@@ -156,7 +158,8 @@ function App() {
           <Clicker clicker={clicker} setLocations={setLocations} />
         </Grid>
         <Grid item xs={12} md={3}>
-          <div>text</div>
+          <Trip />
+          <TripHistory data={locations} />
         </Grid>
         <Grid item xs={12} md={6}>
           <div style={{ width: 900, height: "85vh" }} id="map" />
