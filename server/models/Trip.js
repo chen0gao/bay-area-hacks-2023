@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+//
 
 const TripSchema = new mongoose.Schema(
   {
@@ -7,6 +8,17 @@ const TripSchema = new mongoose.Schema(
       required: true,
     },
     //need to be done
+    date:{
+      type: String,
+      required: true
+    },
+    locations:[
+        {
+        name: String,
+        latitude: Number,
+        longtitude: Number,
+      }
+    ]
   },
   { timestamps: true }
 );
