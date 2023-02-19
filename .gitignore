@@ -3,6 +3,8 @@
 # dependencies
 front/node_modules
 front/package-lock.json
+front/src/config.js
+
 /.pnp
 .pnp.js
 
