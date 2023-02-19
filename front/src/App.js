@@ -8,6 +8,7 @@ import Search from "./components/Search/Search";
 import TogglePath from "./components/TogglePath";
 import Clicker from "./components/Clicker";
 import { config } from "./config";
+import InputForm from "./components/InputForm";
 
 function App() {
   const [locations, setLocations] = useState([]);
@@ -17,6 +18,8 @@ function App() {
   const [placesService, setPlacesService] = useState(null);
   const [infowindow, setInfowindow] = useState(null);
   const [map, setMap] = useState(null);
+  const [numTravellers, setNumTravellers] = useState("");
+  const [businessType, setBusinessType] = useState("");
 
   function onScriptLoad() {
     const service = new window.google.maps.DirectionsService();
@@ -97,6 +100,65 @@ function App() {
 
     render.setMap(map_);
 
+    //DEST: Autocomplete2
+    // const autocomplete2 = new window.google.maps.places.Autocomplete(
+    //   document.getElementById("pac-input-dest"),
+    //   options
+    // );
+    // setInfowindow(infowindow);
+    // // const infowindowContent = document.getElementById("infowindow-content");
+    // autocomplete2.bindTo("bounds", map_);
+
+    // const marker2 = new window.google.maps.Marker({
+    //   map_,
+    //   anchorPoint: new window.google.maps.Point(0, -29),
+    // });
+    // autocomplete2.addListener("place_changed", () => {
+    //   infowindow_.close();
+    //   marker.setVisible(false);
+
+    //   const place = autocomplete2.getPlace();
+
+    //   if (!place.geometry || !place.geometry.location) {
+    //     // User entered the name of a Place that was not suggested and
+    //     // pressed the Enter key, or the Place Details request failed.
+    //     window.alert("No details available for input: '" + place.name + "'");
+    //     return;
+    //   }
+
+    //   // If the place has a geometry, then present it on a map.
+    //   if (place.geometry.viewport) {
+    //     map_.fitBounds(place.geometry.viewport);
+    //   } else {
+    //     map_.setCenter(place.geometry.location);
+    //     map_.setZoom(17);
+    //   }
+
+    //   console.log(place);
+
+    //   // console.log(place.geometry.location.lng().toString());
+    //   setLocations((locations) => [
+    //     ...locations,
+    //     {
+    //       name: place.name,
+    //       lat: place.geometry.location.toJSON().lat,
+    //       lng: place.geometry.location.toJSON().lng,
+    //     },
+    //   ]);
+
+    //   marker.setPosition(place.geometry.location);
+    //   marker.setVisible(true);
+    //   // infowindowContent.children["place-name"].textContent = place.name;
+    //   // infowindowContent.children["place-address"].textContent =
+    //   // place.formatted_address;
+    //   infowindow_.open(map_, marker);
+    // });
+
+    // render.setMap(map_);
+
+
+    /////////////
+
     const infowindowContent = document.getElementById("infowindow-content");
     infowindow_.setContent(infowindowContent);
     // Handle clicking event
@@ -166,9 +228,11 @@ function App() {
     <>
       <CssBaseline />
       <Header />
-      <Grid container spacing={3} style={{ width: "100%" }}>
-        <Grid item xs={12} md={6}>
-          <Search />
+      <Grid container spacing={3} sx={{ overflow: 'auto', maxHeight: '90vh%' }}>
+        <Grid item xs={12} md={3}>
+          <InputForm numTravellers={numTravellers} setNumTravellers={setNumTravellers}
+            businessType={businessType} setBusinessType={setBusinessType} />
+          {/* <Search />*/}
           <SearchBoxResult data={locations} />
           <TogglePath
             locations={locations}
@@ -176,6 +240,9 @@ function App() {
             directionsRenderer={directionsRenderer}
           />
           <Clicker clicker={clicker} setLocations={setLocations} />
+        </Grid>
+        <Grid item xs={12} md={3}>
+          <div>text</div>
         </Grid>
         <Grid item xs={12} md={6}>
           <div style={{ width: 900, height: "85vh" }} id="map" />

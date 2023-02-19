@@ -11,7 +11,6 @@ const Header = () => {
                 <Typography variant="h5" className={ classes.title}>
                     Road Trip Planner
                 </Typography>
-                
                 <Box display="flex">
                     <Typography variant="h7" className={ classes.title}>
                         Go where your heart takes you
