@@ -11,9 +11,9 @@ export default function Home() {
   const trip = {
     "date":"2023-05-20",
     "locations":[
-      {"name":"boston", "latitude":2, "logtitude":2},
-      {"name":"boston", "latitude":3, "logtitude":3},
-      {"name":"boston", "latitude":4, "logtitude":4}
+      {"name":"new york", "latitude":2, "logtitude":2},
+      {"name":"new york", "latitude":3, "logtitude":3},
+      {"name":"new york", "latitude":4, "logtitude":4}
     ]
     }
   
@@ -51,7 +51,12 @@ export default function Home() {
   }
 
   const getTripHandler = () =>{
-
+    try{
+      const res = axios.get("/trips/" + userId);
+      console.log(res);
+    }catch(err){
+      console.log(err);
+    }
   }
 
   return (
