@@ -1,5 +1,5 @@
 export const config =
 {
-    "server_host": "127.0.0.1",
-    "server_port": "8080"
+    "server_host": "localhost",
+    "server_port": "8800"
 }
