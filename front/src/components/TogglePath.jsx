@@ -1,8 +1,19 @@
 import React, { useState, useEffect } from "react";
+import { createRoute } from "./../gmapApi";
 
-function TogglePath({ directionsService, directionsRenderer, locations }) {
+function TogglePath({ map, locations, route, setRoute }) {
   function clickEvent() {
     console.log(locations);
+
+    const directionsService = new window.google.maps.DirectionsService();
+    const directionsRenderer = new window.google.maps.DirectionsRenderer();
+
+    directionsRenderer.setPanel(document.getElementById("sidebar"));
+
+    directionsRenderer.setMap(map);
+
+    let rand = Math.floor(Math.random() * 5);
+    let colors = ["red", "yellow", "green", "blue", "orange"];
 
     const waypointList = [];
 
@@ -21,19 +32,13 @@ function TogglePath({ directionsService, directionsRenderer, locations }) {
     // console.log(locations);
     // console.log(waypointList);
 
-    directionsService
-      .route({
-        origin: src,
-        destination: desc,
-        waypoints: waypointList,
-        optimizeWaypoints: true,
-        travelMode: window.google.maps.TravelMode.DRIVING,
-      })
-      .then((response) => {
-        console.log(response);
-        directionsRenderer.setDirections(response);
-      })
-      .catch((e) => window.alert("Directions request failed due to "));
+    createRoute(directionsRenderer, directionsService, {
+      color: colors[rand],
+      origin: src,
+      destination: desc,
+      waypoints: waypointList,
+      travelMode: window.google.maps.TravelMode.DRIVING,
+    });
   }
 
   return (

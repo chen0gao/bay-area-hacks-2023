@@ -1,4 +1,40 @@
+import { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { Button } from "@mui/material";
+
 export default function SignUp() {
+  const username = useRef();
+  const email = useRef();
+  const password = useRef();
+  const passwordAgain = useRef();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (localStorage.getItem("user_info")) {
+      navigate("/");
+    }
+  }, []);
+
+  const handleClick = async (e) => {
+    e.preventDefault();
+    if (passwordAgain.current.value !== password.current.value) {
+      passwordAgain.current.setCustomValidity("Passwords don't match!");
+    } else {
+      const user = {
+        username: username.current.value,
+        email: email.current.value,
+        password: password.current.value,
+      };
+      try {
+        await axios.post("/auth/register", user);
+        navigate("/login");
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  };
+
   return (
     <div>
       <div class="uk-grid-collapse" data-uk-grid="">
@@ -7,57 +43,60 @@ export default function SignUp() {
           data-uk-height-viewport=""
         >
           <div class="uk-width-3-4@s">
-            <div class="uk-text-center uk-margin-bottom">
-              <a class="uk-logo uk-text-primary uk-text-bold" href="index.html">
-                Kocina
-              </a>
-            </div>
             <div class="uk-text-center uk-margin-medium-bottom">
               <h1 class="uk-h2 uk-letter-spacing-small">Create an Account</h1>
             </div>
             <div class="uk-text-center uk-margin">
-              <p class="uk-margin-remove">
-                Or use your email for registration:
-              </p>
+              <p class="uk-margin-remove">Use your email for registration:</p>
             </div>
-            <form class="uk-text-center">
+            <form class="uk-text-center" onSubmit={handleClick}>
               <div class="uk-width-1-1 uk-margin">
-                <label class="uk-form-label" for="name">
-                  Full name
-                </label>
+                <label class="uk-form-label">User Name</label>
                 <input
-                  id="name"
                   class="uk-input uk-form-large uk-border-pill uk-text-center"
                   type="text"
-                  placeholder="Tom Atkins"
+                  required
+                  placeholder="User Name"
+                  ref={username}
                 />
               </div>
               <div class="uk-width-1-1 uk-margin">
-                <label class="uk-form-label" for="email">
-                  Email
-                </label>
+                <label class="uk-form-label">Email</label>
                 <input
-                  id="email"
                   class="uk-input uk-form-large uk-border-pill uk-text-center"
                   type="email"
-                  placeholder="tom@company.com"
+                  required
+                  placeholder="Email"
+                  ref={email}
                 />
               </div>
               <div class="uk-width-1-1 uk-margin">
-                <label class="uk-form-label" for="password">
-                  Password
-                </label>
+                <label class="uk-form-label">Password</label>
                 <input
-                  id="password"
                   class="uk-input uk-form-large uk-border-pill uk-text-center"
                   type="password"
-                  placeholder="Min 8 characters"
+                  required
+                  minLength={6}
+                  placeholder="type your password"
+                  ref={password}
+                />
+              </div>
+              <div class="uk-width-1-1 uk-margin">
+                <label class="uk-form-label">Confirm Password</label>
+                <input
+                  class="uk-input uk-form-large uk-border-pill uk-text-center"
+                  type="password"
+                  required
+                  minLength={6}
+                  placeholder="re-type your password"
+                  ref={passwordAgain}
                 />
               </div>
               <div class="uk-width-1-1 uk-text-center">
-                <button class="uk-button uk-button-primary uk-button-large">
+                <Button variant="contained" type="submit">Sign Up</Button>
+                {/* <button class="uk-button uk-button-primary uk-button-large">
                   Sign Up
-                </button>
+                </button> */}
               </div>
             </form>
           </div>
@@ -85,12 +124,12 @@ export default function SignUp() {
                   first meal today
                 </p>
                 <div class="uk-width-1-1 uk-text-center">
-                  <a
-                    href="sign-in.html"
-                    class="uk-button uk-button-primary uk-button-large"
-                  >
-                    Sign In
-                  </a>
+                  <Link to="/">
+                    <Button variant="contained">Sign In</Button>
+                    {/* <a class="uk-button uk-button-primary uk-button-large">
+                      Sign In
+                    </a> */}
+                  </Link>
                 </div>
               </div>
             </div>

@@ -4,8 +4,9 @@ import SearchBoxResult from "./components/SearchBoxResult";
 import { Box, CssBaseline, Grid } from "@material-ui/core";
 // import SearchIcon from '@material-ui/icons/Search';
 import Header from "./components/Header/Header";
-import Search from "./components/Search/Search";
 import TogglePath from "./components/TogglePath";
+import SearchNearByBtn from "./components/SearchNearByBtn";
+import AutoCompleteInput from "./components/AutoCompleteInput";
 import Clicker from "./components/Clicker";
 import { config } from "./config";
 import InputForm from "./components/InputForm";
@@ -13,157 +14,41 @@ import InputForm from "./components/InputForm";
 function App() {
   const [locations, setLocations] = useState([]);
   const [clicker, setClicker] = useState({});
-  const [directionsService, setDirectionsService] = useState(null);
-  const [directionsRenderer, setDirectionsRenderer] = useState(null);
   const [placesService, setPlacesService] = useState(null);
   const [infowindow, setInfowindow] = useState(null);
   const [map, setMap] = useState(null);
+  const [nearByLocation, setNearByLocation] = useState({});
+  const [autoCompleteMarker, setAutoCompleteMarker] = useState(null);
+
+  const [route, setRoute] = useState({});
   const [numTravellers, setNumTravellers] = useState("");
   const [businessType, setBusinessType] = useState("");
 
   function onScriptLoad() {
-    const service = new window.google.maps.DirectionsService();
-    const render = new window.google.maps.DirectionsRenderer();
-    setDirectionsService(service);
-    setDirectionsRenderer(render);
-
-    render.setPanel(document.getElementById("sidebar"));
+    // Initializing Map components
     const map_ = new window.google.maps.Map(document.getElementById("map"), {
-      zoom: 6,
-      center: { lat: 41.85, lng: -87.65 },
+      zoom: 10,
+      center: { lat: 40.78, lng: -73.96 },
     });
-
     setMap(map_);
 
     const pService = new window.google.maps.places.PlacesService(map_);
     setPlacesService(pService);
-
-    const options = {
-      fields: ["formatted_address", "geometry", "name"],
-      strictBounds: false,
-      types: ["establishment"],
-    };
-    const autocomplete = new window.google.maps.places.Autocomplete(
-      document.getElementById("pac-input"),
-      options
-    );
-
     const infowindow_ = new window.google.maps.InfoWindow();
-    setInfowindow(infowindow);
-    // const infowindowContent = document.getElementById("infowindow-content");
-    autocomplete.bindTo("bounds", map_);
+    setInfowindow(infowindow_);
 
     const marker = new window.google.maps.Marker({
       map_,
       anchorPoint: new window.google.maps.Point(0, -29),
     });
-    autocomplete.addListener("place_changed", () => {
-      infowindow_.close();
-      marker.setVisible(false);
 
-      const place = autocomplete.getPlace();
-
-      if (!place.geometry || !place.geometry.location) {
-        // User entered the name of a Place that was not suggested and
-        // pressed the Enter key, or the Place Details request failed.
-        window.alert("No details available for input: '" + place.name + "'");
-        return;
-      }
-
-      // If the place has a geometry, then present it on a map.
-      if (place.geometry.viewport) {
-        map_.fitBounds(place.geometry.viewport);
-      } else {
-        map_.setCenter(place.geometry.location);
-        map_.setZoom(17);
-      }
-
-      console.log(place);
-
-      // console.log(place.geometry.location.lng().toString());
-      setLocations((locations) => [
-        ...locations,
-        {
-          name: place.name,
-          lat: place.geometry.location.toJSON().lat,
-          lng: place.geometry.location.toJSON().lng,
-        },
-      ]);
-
-      marker.setPosition(place.geometry.location);
-      marker.setVisible(true);
-      // infowindowContent.children["place-name"].textContent = place.name;
-      // infowindowContent.children["place-address"].textContent =
-      // place.formatted_address;
-      infowindow_.open(map_, marker);
-    });
-
-    render.setMap(map_);
-
-    //DEST: Autocomplete2
-    // const autocomplete2 = new window.google.maps.places.Autocomplete(
-    //   document.getElementById("pac-input-dest"),
-    //   options
-    // );
-    // setInfowindow(infowindow);
-    // // const infowindowContent = document.getElementById("infowindow-content");
-    // autocomplete2.bindTo("bounds", map_);
-
-    // const marker2 = new window.google.maps.Marker({
-    //   map_,
-    //   anchorPoint: new window.google.maps.Point(0, -29),
-    // });
-    // autocomplete2.addListener("place_changed", () => {
-    //   infowindow_.close();
-    //   marker.setVisible(false);
-
-    //   const place = autocomplete2.getPlace();
-
-    //   if (!place.geometry || !place.geometry.location) {
-    //     // User entered the name of a Place that was not suggested and
-    //     // pressed the Enter key, or the Place Details request failed.
-    //     window.alert("No details available for input: '" + place.name + "'");
-    //     return;
-    //   }
-
-    //   // If the place has a geometry, then present it on a map.
-    //   if (place.geometry.viewport) {
-    //     map_.fitBounds(place.geometry.viewport);
-    //   } else {
-    //     map_.setCenter(place.geometry.location);
-    //     map_.setZoom(17);
-    //   }
-
-    //   console.log(place);
-
-    //   // console.log(place.geometry.location.lng().toString());
-    //   setLocations((locations) => [
-    //     ...locations,
-    //     {
-    //       name: place.name,
-    //       lat: place.geometry.location.toJSON().lat,
-    //       lng: place.geometry.location.toJSON().lng,
-    //     },
-    //   ]);
-
-    //   marker.setPosition(place.geometry.location);
-    //   marker.setVisible(true);
-    //   // infowindowContent.children["place-name"].textContent = place.name;
-    //   // infowindowContent.children["place-address"].textContent =
-    //   // place.formatted_address;
-    //   infowindow_.open(map_, marker);
-    // });
-
-    // render.setMap(map_);
-
-
-    /////////////
+    setAutoCompleteMarker(marker);
 
     const infowindowContent = document.getElementById("infowindow-content");
     infowindow_.setContent(infowindowContent);
     // Handle clicking event
     map_.addListener("click", (event) => {
-      console.log("You clicked on: " + event.latLng);
+      console.log(event);
       // If the event has a placeId, use it.
       if (isIconMouseEvent(event)) {
         console.log("You clicked on place:" + event.placeId);
@@ -232,12 +117,41 @@ function App() {
         <Grid item xs={12} md={3}>
           <InputForm numTravellers={numTravellers} setNumTravellers={setNumTravellers}
             businessType={businessType} setBusinessType={setBusinessType} />
-          {/* <Search />*/}
+          <AutoCompleteInput
+            index={0}
+            map={map}
+            infowindow={infowindow}
+            marker={autoCompleteMarker}
+            setLocations={setLocations}
+          />
+          <AutoCompleteInput
+            index={1}
+            map={map}
+            infowindow={infowindow}
+            marker={autoCompleteMarker}
+            setLocations={setLocations}
+          />
+          <AutoCompleteInput
+            index={2}
+            map={map}
+            infowindow={infowindow}
+            marker={autoCompleteMarker}
+            setLocations={setLocations}
+          />
           <SearchBoxResult data={locations} />
           <TogglePath
+            map={map}
             locations={locations}
-            directionsService={directionsService}
-            directionsRenderer={directionsRenderer}
+            route={route}
+            setRoute={setRoute}
+          />
+          <SearchNearByBtn
+            map={map}
+            infowindow={infowindow}
+            placesService={placesService}
+            setClicker={setClicker}
+            nearByLocation={nearByLocation}
+            setNearByLocation={setNearByLocation}
           />
           <Clicker clicker={clicker} setLocations={setLocations} />
         </Grid>
@@ -248,9 +162,6 @@ function App() {
           <div style={{ width: 900, height: "85vh" }} id="map" />
         </Grid>
       </Grid>
-      <div id="pac-container">
-        <input id="pac-input" type="text" placeholder="Enter a location" />
-      </div>
       <div id="sidebar"></div>
       <div id="infowindow-content">
         <img id="place-icon" src="" height="16" width="16" />
