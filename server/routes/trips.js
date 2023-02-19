@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const Trip = require("../models/Trip");
 
-//post trip
+//post trips
 router.post("/:userId", async(req,res)=>{
     try{
         const newTrip = new Trip({
