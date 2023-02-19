@@ -1,8 +1,8 @@
 import "./static/App.css";
 import React, { useState, useEffect } from "react";
 import SearchBoxResult from "./components/SearchBoxResult";
-import { Box, CssBaseline, Grid } from '@material-ui/core';
-import SearchIcon from '@material-ui/icons/Search';
+import { Box, CssBaseline, Grid } from "@material-ui/core";
+// import SearchIcon from '@material-ui/icons/Search';
 import Header from "./components/Header/Header";
 import Search from "./components/Search/Search";
 import TogglePath from "./components/TogglePath";
@@ -158,7 +158,7 @@ function App() {
         onScriptLoad();
       });
     } else {
-      this.onScriptLoad();
+      onScriptLoad();
     }
   }, []);
 
@@ -166,7 +166,7 @@ function App() {
     <>
       <CssBaseline />
       <Header />
-      <Grid container spacing={3} style={{ width: '100%' }}>
+      <Grid container spacing={3} style={{ width: "100%" }}>
         <Grid item xs={12} md={6}>
           <Search />
           <SearchBoxResult data={locations} />
