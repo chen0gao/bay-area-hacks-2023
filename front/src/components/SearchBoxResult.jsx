@@ -1,14 +1,10 @@
+import "./App.css";
+
 function SearchBoxResult({ data }) {
   return (
     <>
       {data.map((ele) => {
-        return (
-          <li>
-            Name: {ele.name}
-            Lat: {ele.lat}
-            Lng: {ele.lng}
-          </li>
-        );
+        return <li>{ele}</li>;
       })}
     </>
   );

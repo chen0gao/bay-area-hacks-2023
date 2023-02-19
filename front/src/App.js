@@ -1,4 +1,4 @@
-import "./App.css";
+import "./static/App.css";
 import React, { useState, useEffect } from "react";
 import SearchBoxResult from "./components/SearchBoxResult";
 import TogglePath from "./components/TogglePath";
