@@ -1,6 +1,7 @@
 import "./static/App.css";
 import React, { useState, useEffect } from "react";
 import SearchBoxResult from "./components/SearchBoxResult";
+import Trip from "./components/Trip/Trip";
 import { Box, CssBaseline, Grid } from "@material-ui/core";
 // import SearchIcon from '@material-ui/icons/Search';
 import Header from "./components/Header/Header";
@@ -8,6 +9,7 @@ import Search from "./components/Search/Search";
 import TogglePath from "./components/TogglePath";
 import Clicker from "./components/Clicker";
 import { config } from "./config";
+import TripHistory from "./components/TripHistory";
 
 function App() {
   const [locations, setLocations] = useState([]);
@@ -167,7 +169,7 @@ function App() {
       <CssBaseline />
       <Header />
       <Grid container spacing={3} style={{ width: "100%" }}>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={3}>
           <Search />
           <SearchBoxResult data={locations} />
           <TogglePath
@@ -176,6 +178,11 @@ function App() {
             directionsRenderer={directionsRenderer}
           />
           <Clicker clicker={clicker} setLocations={setLocations} />
+        </Grid>
+        <Grid item xs={12} md={3}>
+          <Trip />
+          <TripHistory data={locations} />
+            DO SOMETHING HERE
         </Grid>
         <Grid item xs={12} md={6}>
           <div style={{ width: 900, height: "85vh" }} id="map" />
