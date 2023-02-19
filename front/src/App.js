@@ -2,9 +2,10 @@ import "./App.css";
 import React, { useState, useEffect } from "react";
 import Btn from "./Btn";
 import SearchBoxResult from "./SearchBoxResult";
-import { Box } from '@material-ui/core'
-import SearchIcon from '@material-ui/icons/Search'
-import Header from "./components/Header/Header"
+import { Box, CssBaseline, Grid } from '@material-ui/core';
+import SearchIcon from '@material-ui/icons/Search';
+import Header from "./components/Header/Header";
+import Search from "./components/Search/Search";
 
 function App() {
   let directionsService = null;
@@ -131,16 +132,17 @@ function App() {
   // console.log(window.google);
   return (
     <>
+      <CssBaseline />
       <Header />
-      <Box display="flex">
-        <SearchIcon />
-        <div id="pac-container">
-          <input id="pac-input" type="text" placeholder="Enter a location" />
-        </div>
-      </Box>
-      <div style={{ width: 500, height: 500 }} id="map" />
-      <Btn test={test} />
-      <SearchBoxResult data={locations} />
+      <Grid container spacing={3} style={{ width: '100%' }}>
+        <Grid item xs={12} md={6}>
+          <Search />
+          <SearchBoxResult data={locations} />
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <div style={{ width: 900, height: "85vh" }} id="map" />
+        </Grid>
+      </Grid>
     </>
   );
 }
