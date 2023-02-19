@@ -1,6 +1,10 @@
 import "./static/App.css";
 import React, { useState, useEffect } from "react";
 import SearchBoxResult from "./components/SearchBoxResult";
+import { Box, CssBaseline, Grid } from '@material-ui/core';
+import SearchIcon from '@material-ui/icons/Search';
+import Header from "./components/Header/Header";
+import Search from "./components/Search/Search";
 import TogglePath from "./components/TogglePath";
 import Clicker from "./components/Clicker";
 import { config } from "./config";
@@ -160,6 +164,22 @@ function App() {
 
   return (
     <>
+      <CssBaseline />
+      <Header />
+      <Grid container spacing={3} style={{ width: '100%' }}>
+        <Grid item xs={12} md={6}>
+          <Search />
+          <SearchBoxResult data={locations} />
+          <TogglePath
+            locations={locations}
+            directionsService={directionsService}
+            directionsRenderer={directionsRenderer}
+          />
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <div style={{ width: 900, height: "85vh" }} id="map" />
+        </Grid>
+      </Grid>
       <div id="pac-container">
         <input id="pac-input" type="text" placeholder="Enter a location" />
       </div>
