@@ -5,19 +5,15 @@ import { useEffect, useState } from "react";
 export default function Home() {
   
   const navigate = useNavigate();
-  const [user, setUser] = useState({});
   
-
   useEffect(() => {
     const fetchUser = async ()=>{
       const res = localStorage.getItem("user_info");
-      const user = await res;
-      setUser(user);
+      if(!res){
+        navigate("/login");
+      }
     }
     fetchUser();
-    if(!user){
-      navigate("/login");
-    }
   }, []);
 
   const handleClick = (e) => {

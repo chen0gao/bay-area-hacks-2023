@@ -20,9 +20,9 @@ export default function Login() {
     const save = async () => {
       const user = await result;
       localStorage.setItem("user_info", JSON.stringify(user));
+      navigate("/");
     };
     save();
-    navigate("/");
   };
   return (
     <div class="uk-grid-collapse" data-uk-grid="">
