@@ -16,15 +16,13 @@ function TripHistory({ data }) {
       {data.map((ele) =>
         <Box
           key={ele.tripName}
-          p={3}
-          m={2}
-          style={{ background: 'white', borderRadius: '16px', border: '2px solid #000' }}
+          p={1}
+          m={1}
+          style={{ background: 'white', borderRadius: '16px', border: '1px solid #3f51b5', alignItems: 'center'}}
         >
-        <li>
-            Name: {ele.name}
-            Lat: {ele.lat}
-            Lon: {ele.lng}
-        </li>
+        <p align="center">
+            {ele.name}
+        </p>
 
         {/* <h2>Trip Name: {ele.tripName}</h2> 
         <p>Date Traveled: {ele.tripDate}</p> */}

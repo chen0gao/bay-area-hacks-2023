@@ -182,7 +182,6 @@ function App() {
         <Grid item xs={12} md={3}>
           <Trip />
           <TripHistory data={locations} />
-            DO SOMETHING HERE
         </Grid>
         <Grid item xs={12} md={6}>
           <div style={{ width: 900, height: "85vh" }} id="map" />
