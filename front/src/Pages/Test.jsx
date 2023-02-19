@@ -16,7 +16,7 @@ export default function Home() {
     }
     fetchUser();
     if(!user){
-      navigate("/");
+      navigate("/login");
     }
   }, []);
 
@@ -27,10 +27,13 @@ export default function Home() {
   }
   return (
     <div>
-      hi
+      <Topbar/>
+      {/* hi
       <button onClick={handleClick}>
         logout
-      </button>
+      </button> */}
     </div>
   );
 }
+
+

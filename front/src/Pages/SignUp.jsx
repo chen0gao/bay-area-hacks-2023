@@ -2,6 +2,8 @@ import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Button } from "@mui/material";
+
 export default function SignUp() {
   const username = useRef();
   const email = useRef();
@@ -41,11 +43,6 @@ export default function SignUp() {
           data-uk-height-viewport=""
         >
           <div class="uk-width-3-4@s">
-            <div class="uk-text-center uk-margin-bottom">
-              <a class="uk-logo uk-text-primary uk-text-bold">
-                Trip
-              </a>
-            </div>
             <div class="uk-text-center uk-margin-medium-bottom">
               <h1 class="uk-h2 uk-letter-spacing-small">Create an Account</h1>
             </div>
@@ -54,9 +51,7 @@ export default function SignUp() {
             </div>
             <form class="uk-text-center" onSubmit={handleClick}>
               <div class="uk-width-1-1 uk-margin">
-                <label class="uk-form-label">
-                  User Name
-                </label>
+                <label class="uk-form-label">User Name</label>
                 <input
                   class="uk-input uk-form-large uk-border-pill uk-text-center"
                   type="text"
@@ -66,9 +61,7 @@ export default function SignUp() {
                 />
               </div>
               <div class="uk-width-1-1 uk-margin">
-                <label class="uk-form-label">
-                  Email
-                </label>
+                <label class="uk-form-label">Email</label>
                 <input
                   class="uk-input uk-form-large uk-border-pill uk-text-center"
                   type="email"
@@ -78,9 +71,7 @@ export default function SignUp() {
                 />
               </div>
               <div class="uk-width-1-1 uk-margin">
-                <label class="uk-form-label">
-                  Password
-                </label>
+                <label class="uk-form-label">Password</label>
                 <input
                   class="uk-input uk-form-large uk-border-pill uk-text-center"
                   type="password"
@@ -91,9 +82,7 @@ export default function SignUp() {
                 />
               </div>
               <div class="uk-width-1-1 uk-margin">
-                <label class="uk-form-label">
-                  Confirm Password
-                </label>
+                <label class="uk-form-label">Confirm Password</label>
                 <input
                   class="uk-input uk-form-large uk-border-pill uk-text-center"
                   type="password"
@@ -104,9 +93,10 @@ export default function SignUp() {
                 />
               </div>
               <div class="uk-width-1-1 uk-text-center">
-                <button class="uk-button uk-button-primary uk-button-large">
+                <Button variant="contained" type="submit">Sign Up</Button>
+                {/* <button class="uk-button uk-button-primary uk-button-large">
                   Sign Up
-                </button>
+                </button> */}
               </div>
             </form>
           </div>
@@ -135,9 +125,10 @@ export default function SignUp() {
                 </p>
                 <div class="uk-width-1-1 uk-text-center">
                   <Link to="/">
-                    <a class="uk-button uk-button-primary uk-button-large">
+                    <Button variant="contained">Sign In</Button>
+                    {/* <a class="uk-button uk-button-primary uk-button-large">
                       Sign In
-                    </a>
+                    </a> */}
                   </Link>
                 </div>
               </div>
