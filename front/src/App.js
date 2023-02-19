@@ -1,27 +1,25 @@
-import "./App.css";
+import "./static/App.css";
 import React, { useState, useEffect } from "react";
-import Btn from "./Btn";
-import SearchBoxResult from "./SearchBoxResult";
+import SearchBoxResult from "./components/SearchBoxResult";
 import { Box, CssBaseline, Grid } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import Header from "./components/Header/Header";
 import Search from "./components/Search/Search";
+import TogglePath from "./components/TogglePath";
+import { config } from "./config";
 
 function App() {
-  let directionsService = null;
-  let directionsRenderer = null;
-
   const [locations, setLocations] = useState([]);
+  const [clicker, setClicker] = useState(0);
+  const [directionsService, setDirectionsService] = useState(null);
+  const [directionsRenderer, setDirectionsRenderer] = useState(null);
 
-  useEffect(() => {
-    // // Update the document title using the brow
-    // const map = new window.google.maps.Map(document.getElementById("map"), {
-    //   center: { lat: 41.0082, lng: 28.9784 },
-    //   zoom: 8,
-    // });
+  function onScriptLoad() {
+    const service = new window.google.maps.DirectionsService();
+    const render = new window.google.maps.DirectionsRenderer();
+    setDirectionsService(service);
+    setDirectionsRenderer(render);
 
-    directionsService = new window.google.maps.DirectionsService();
-    directionsRenderer = new window.google.maps.DirectionsRenderer();
     const map = new window.google.maps.Map(document.getElementById("map"), {
       zoom: 6,
       center: { lat: 41.85, lng: -87.65 },
@@ -66,10 +64,16 @@ function App() {
         map.setZoom(17);
       }
 
-      console.log(place.geometry.location);
+      console.log(place);
+
+      // console.log(place.geometry.location.lng().toString());
       setLocations((locations) => [
         ...locations,
-        place.geometry.location.toString(),
+        {
+          name: place.name,
+          lat: place.geometry.location.toJSON().lat,
+          lng: place.geometry.location.toJSON().lng,
+        },
       ]);
 
       marker.setPosition(place.geometry.location);
@@ -80,56 +84,28 @@ function App() {
       infowindow.open(map, marker);
     });
 
-    directionsRenderer.setMap(map);
+    render.setMap(map);
+  }
 
-    directionsService
-      .route({
-        origin: "Halifax, NS",
-        destination: "New York, NY",
-        waypoints: [
-          {
-            location: "montreal, quebec",
-            stopover: true,
-          },
-          {
-            location: "toronto, ont",
-            stopover: true,
-          },
-        ],
-        optimizeWaypoints: true,
-        travelMode: window.google.maps.TravelMode.DRIVING,
-      })
-      .then((response) => {
-        console.log(response);
-        directionsRenderer.setDirections(response);
-      })
-      .catch((e) => window.alert("Directions request failed due to "));
+  //Intializing Google Map API
+  useEffect(() => {
+    // Embeding Google API
+    if (!window.google) {
+      const s = document.createElement("script");
+      s.type = "text/javascript";
+      s.src = `https://maps.google.com/maps/api/js?key=${config.api_key}&callback=initMap&libraries=places`;
+      var x = document.getElementsByTagName("script")[0];
+      x.parentNode.insertBefore(s, x);
+      // Below is important.
+      //We cannot access google.maps until it's finished loading
+      s.addEventListener("load", (e) => {
+        onScriptLoad();
+      });
+    } else {
+      this.onScriptLoad();
+    }
   }, []);
 
-  function test() {
-    directionsService
-      .route({
-        origin: "Halifax, NS",
-        destination: "New York, NY",
-        waypoints: [
-          {
-            location: "Brooklyn, NY",
-            stopover: true,
-          },
-          {
-            location: "Queen, NY",
-            stopover: true,
-          },
-        ],
-        optimizeWaypoints: true,
-        travelMode: window.google.maps.TravelMode.DRIVING,
-      })
-      .then((response) => {
-        directionsRenderer.setDirections(response);
-      })
-      .catch((e) => window.alert("Directions request failed due to "));
-  }
-  // console.log(window.google);
   return (
     <>
       <CssBaseline />
@@ -138,6 +114,11 @@ function App() {
         <Grid item xs={12} md={6}>
           <Search />
           <SearchBoxResult data={locations} />
+          <TogglePath
+            locations={locations}
+            directionsService={directionsService}
+            directionsRenderer={directionsRenderer}
+          />
         </Grid>
         <Grid item xs={12} md={6}>
           <div style={{ width: 900, height: "85vh" }} id="map" />
