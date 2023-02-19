@@ -2,6 +2,9 @@ import "./App.css";
 import React, { useState, useEffect } from "react";
 import Btn from "./Btn";
 import SearchBoxResult from "./SearchBoxResult";
+import { Box } from '@material-ui/core'
+import SearchIcon from '@material-ui/icons/Search'
+import Header from "./components/Header/Header"
 
 function App() {
   let directionsService = null;
@@ -128,9 +131,13 @@ function App() {
   // console.log(window.google);
   return (
     <>
-      <div id="pac-container">
-        <input id="pac-input" type="text" placeholder="Enter a location" />
-      </div>
+      <Header />
+      <Box display="flex">
+        <SearchIcon />
+        <div id="pac-container">
+          <input id="pac-input" type="text" placeholder="Enter a location" />
+        </div>
+      </Box>
       <div style={{ width: 500, height: 500 }} id="map" />
       <Btn test={test} />
       <SearchBoxResult data={locations} />
