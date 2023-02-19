@@ -1,4 +1,4 @@
-import "./App.css";
+import "./static/App.css";
 import React, { useState, useEffect } from "react";
 import Btn from "./Btn";
 import SearchBoxResult from "./SearchBoxResult";
