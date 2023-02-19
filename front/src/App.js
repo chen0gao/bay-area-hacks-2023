@@ -175,6 +175,7 @@ function App() {
             directionsService={directionsService}
             directionsRenderer={directionsRenderer}
           />
+          <Clicker clicker={clicker} setLocations={setLocations} />
         </Grid>
         <Grid item xs={12} md={6}>
           <div style={{ width: 900, height: "85vh" }} id="map" />
@@ -184,7 +185,6 @@ function App() {
         <input id="pac-input" type="text" placeholder="Enter a location" />
       </div>
       <div id="sidebar"></div>
-      <div style={{ width: 500, height: 500 }} id="map" />
       <div id="infowindow-content">
         <img id="place-icon" src="" height="16" width="16" />
         <span id="place-name" class="title"></span>
@@ -193,13 +193,6 @@ function App() {
         <br />
         <span id="place-address"></span>
       </div>
-      <SearchBoxResult data={locations} />
-      <TogglePath
-        locations={locations}
-        directionsService={directionsService}
-        directionsRenderer={directionsRenderer}
-      />
-      <Clicker clicker={clicker} setLocations={setLocations} />
     </>
   );
 }
