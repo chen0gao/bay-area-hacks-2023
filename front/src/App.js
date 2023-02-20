@@ -14,6 +14,7 @@ import useStyles from './components/Header/styles';
 import { config } from "./config";
 import TripHistory from "./components/TripHistory";
 import InputForm from "./components/InputForm";
+import Map from "./Map"
 
 function App() {
   const [locations, setLocations] = useState([]);
