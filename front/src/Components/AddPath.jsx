@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { createRoute } from "../gmapApi";
+import styles from "./Header/styles";
+import useStyles from "./Header/styles";
+import {Button} from "@material-ui/core";
 
 function TogglePath({ index, map, directionsService, routes, setRoutes }) {
+  const style = useStyles();
   function clickEvent() {
     // console.log(routes);
     if (index in routes && routes[index].directionsRenderer) {
@@ -50,7 +54,13 @@ function TogglePath({ index, map, directionsService, routes, setRoutes }) {
 
   return (
     <>
-      <button onClick={clickEvent}>Add Path for {index}</button>
+      <Button                 
+        variant="contained"
+        type="button"
+        id="b3"
+        value={"Find "}
+        className={style.search}
+        onClick={clickEvent}>Add Path for {index}</Button>
     </>
   );
 }

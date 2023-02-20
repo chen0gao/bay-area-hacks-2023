@@ -24,6 +24,8 @@ import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
 import AutoCompleteInput from "./AutoCompleteInput";
 import SearchNearByBtn from "./SearchNearByBtn";
 import TripHistory from "./TripHistory";
+import AddPath from "./AddPath";
+import AddLocation from "./AddLocation"
 
 // import { IconButton } from '@mui/material';
 //map,infowindow,autoCompleteMarker,setLocations,
@@ -42,7 +44,10 @@ const InputForm = ({
   nearByLocation,
   setNearByLocation,
   placesService,
-  setClicker,
+    setClicker,
+    directionsService,
+    setLocations,
+    clicker
 }) => {
   const style = useStyles();
   const handleChange = (e) => setBusinessType(e.target.value);
@@ -63,7 +68,20 @@ const InputForm = ({
   <TabPanel value="2">Item Two</TabPanel>
   <TabPanel value="3">Item Three</TabPanel>
 </TabContext> */}
-      <Card variant="outlined" className={style.overFlow}>
+      <Card variant="outlined" className={style.overFlow} style={{
+            paddingTop: '10px',
+            paddingBottom: '10px',
+            paddingRight: '10px',
+            paddingLeft: '10px',
+            width: '100%',
+            maxWidth: 360,
+            bgcolor: 'background.paper',
+            position: 'relative',
+            height: '120vh',
+            overflow: 'auto',
+            maxHeight: '40vh',
+            '& ul': { padding: 0 },
+          }}>
         <div id="container">
           <div id="first">
             <div class="grid-container" className={style.grid_container}>
@@ -167,29 +185,56 @@ const InputForm = ({
               */}
         <FormControl>
           {/* Work on querySelector to getElementbyId for multipleids */}
-          <InputLabel>Source location</InputLabel>
-          <Input id="pac-input" type="text" className={style.inputInput} />
+                  <InputLabel>Source location</InputLabel>
+                  <AutoCompleteInput
+                        index={0}
+                        map={map}
+                        infowindow={infowindow}
+                        marker={autoCompleteMarker}
+                      setLocations={setLocations}
+                    />
+          {/* <Input id="pac-input" type="text" className={style.inputInput} /> */}
         </FormControl>
         <FormControl>
-          <InputLabel>destination location</InputLabel>
-          <Input id="pac-input-dest" type="text" className={style.inputInput} />
+                  <InputLabel>destination location</InputLabel>
+                  <AutoCompleteInput
+                        index={1}
+                        map={map}
+                        infowindow={infowindow}
+                        marker={autoCompleteMarker}
+                      setLocations={setLocations}
+                    />
+          {/* <Input id="pac-input-dest" type="text" className={style.inputInput} /> */}
         </FormControl>
         <FormControl>
           <div class="grid-container" className={style.grid_container2}>
-            <div class="grid-item">
-              <Button
+                      <div class="grid-item">
+                      <AddPath
+                        index={0}
+                        map={map}
+                        directionsService={directionsService}
+                        routes={routes}
+                        setRoutes={setRoutes}
+                          />
+                          {/* <Button
                 onClick={handleChange}
                 variant="contained"
                 type="button"
                 id="b3"
                 value={"Find "}
                 className={style.search}
-              >
+              > 
                 Toggle Path
-              </Button>
+            </Button> */}
             </div>
-            <div class="grid-item">
-              <Button
+                <div class="grid-item">
+                      <AddLocation
+                            index={0}
+                            clicker={clicker}
+                            routes={routes}
+                            setRoutes={setRoutes}
+                        />
+              {/* <Button
                 onClick={handleChange}
                 variant="contained"
                 type="button"
@@ -198,12 +243,12 @@ const InputForm = ({
                 className={style.search}
               >
                 Add Point
-              </Button>
+              </Button> */}
             </div>
           </div>
         </FormControl>
       </Card>
-      {/* <Card
+      <Card
         style={{
           paddingTop: "20px",
           paddingBottom: "20px",
@@ -213,14 +258,14 @@ const InputForm = ({
           maxWidth: 360,
           bgcolor: "background.paper",
           position: "relative",
-          height: "40vh",
+          height: "60vh",
           overflow: "auto",
           maxHeight: "90vh",
           "& ul": { padding: 0 },
         }}
       >
         <TripHistory routes={routes} />
-      </Card> */}
+      </Card>
     </>
   );
 };
