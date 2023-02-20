@@ -1,18 +1,13 @@
 import "./static/App.css";
 import React, { useState, useEffect } from "react";
-import SearchBoxResult from "./components/SearchBoxResult";
-import Trip from "./components/Trip/Trip";
 import { Box, CssBaseline, Grid, Card } from "@material-ui/core";
 // import SearchIcon from '@material-ui/icons/Search';
 import Header from "./components/Header/Header";
 import AddPath from "./components/AddPath";
-import SearchNearByBtn from "./components/SearchNearByBtn";
 import AutoCompleteInput from "./components/AutoCompleteInput";
 import AddLocation from "./components/AddLocation";
-import styles from "./components/Header/styles";
 import useStyles from "./components/Header/styles";
 import { config } from "./config";
-import TripHistory from "./components/TripHistory";
 import InputForm from "./components/InputForm";
 
 function Map() {

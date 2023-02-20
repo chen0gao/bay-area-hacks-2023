@@ -1,12 +1,16 @@
 import { Box, Container, Typography } from "@material-ui/core";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import ListSubheader from "@mui/material/ListSubheader";
+import Chip from "@mui/material/Chip";
+import Stack from "@mui/material/Stack";
+import PlaceIcon from "@mui/icons-material/Place";
 
-function TripHistory({ routes }) {
+function TripHistory({ routes, setRoutes }) {
   let data = null;
-  console.log(routes);
+  const handleDelete = (i) => {
+    // console.log(i);
+    routes[0].locations.splice(i, 1);
+
+    setRoutes({ ...routes });
+  };
   if (routes && "0" in routes) data = routes[0].locations;
   return (
     <Container>
@@ -14,24 +18,18 @@ function TripHistory({ routes }) {
         Here are the trips you searched for:
       </Typography>
       {data &&
-        data.map((ele) => {
-          console.log(ele);
+        data.map((ele, i) => {
+          // console.log(ele);
 
           return (
-            <Box
-              key={ele.tripName}
-              style={{
-                background: "white",
-                borderRadius: "16px",
-                border: "1px solid #3f51b5",
-                alignItems: "center",
-              }}
-            >
-              <p align="center">{ele.name}</p>
-
-              {/* <h2>Trip Name: {ele.tripName}</h2> 
-        <p>Date Traveled: {ele.tripDate}</p> */}
-            </Box>
+            <Stack direction="row" spacing={1}>
+              <Chip
+                icon={<PlaceIcon />}
+                label={ele.name}
+                variant="outlined"
+                onDelete={() => handleDelete(i)}
+              />
+            </Stack>
           );
         })}
     </Container>
