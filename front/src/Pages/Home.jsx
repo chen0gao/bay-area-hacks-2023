@@ -5,7 +5,7 @@ import axios from "axios";
 import Map from "../Map";
 
 export default function Home() {
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState(null);
   
   const navigate = useNavigate();
   //user Id can be get as: const user = localStorage.getItem("user_info");
@@ -23,10 +23,9 @@ export default function Home() {
   
   useEffect(() => {
     const fetchUser = async ()=>{
-      const res = localStorage.getItem("user_info");
-      setUser(res);
-      //console.log(user);
-      if(!res){
+      const result = JSON.parse(localStorage.getItem("user_info"));
+      setUser(result);
+      if(!result){
         navigate("/login");
       }
     }
