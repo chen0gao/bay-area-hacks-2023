@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function Home() {
+  const [user, setUser] = useState([]);
   
   const navigate = useNavigate();
   const userId = "63f1850c5ee346cc22311b54";
@@ -20,6 +21,8 @@ export default function Home() {
   useEffect(() => {
     const fetchUser = async ()=>{
       const res = localStorage.getItem("user_info");
+      setUser(res);
+      //console.log(user);
       if(!res){
         navigate("/login");
       }

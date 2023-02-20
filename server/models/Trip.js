@@ -8,17 +8,21 @@ const TripSchema = new mongoose.Schema(
       required: true,
     },
     //need to be done
-    date:{
+    date: {
       type: String,
-      required: true
+      required: true,
     },
-    locations:[
-        {
-        name: String,
-        latitude: Number,
-        longtitude: Number,
-      }
-    ]
+    person: [
+      {
+        locations: [
+          {
+            name: String,
+            latitude: Number,
+            longtitude: Number,
+          },
+        ],
+      },
+    ],
   },
   { timestamps: true }
 );
