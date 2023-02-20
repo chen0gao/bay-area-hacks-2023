@@ -1,15 +1,16 @@
-function SearchBoxResult({ data }) {
+function SearchBoxResult({ index, routes }) {
   return (
     <>
-      {data.map((ele) => {
-        return (
-          <li>
-            Name: {ele.name}
-            Lat: {ele.lat}
-            Lon: {ele.lng}
-          </li>
-        );
-      })}
+      {routes[index] &&
+        routes[index].locations.map((ele) => {
+          return (
+            <li>
+              Name: {ele.name}
+              Lat: {ele.lat}
+              Lon: {ele.lng}
+            </li>
+          );
+        })}
     </>
   );
 }

@@ -1,29 +1,55 @@
-import {Button, InputUnstyled, InputLabel, MenuItem, FormControl, Select, Box, Card, Input, Grid } from "@material-ui/core";
-import { Tab } from '@mui/material'
-import { TabContext, TabList, TabPanel} from '@mui/lab'
+import {
+  Button,
+  InputUnstyled,
+  InputLabel,
+  MenuItem,
+  FormControl,
+  Select,
+  Box,
+  Card,
+  Input,
+  Grid,
+} from "@material-ui/core";
+import { Tab } from "@mui/material";
+import { TabContext, TabList, TabPanel } from "@mui/lab";
 import useState from "react";
 import styles from "./Header/styles";
-import useStyles from './Header/styles';
-import RestaurantIcon from '@mui/icons-material/Restaurant';
-import BedIcon from '@mui/icons-material/Bed';
-import LocalBarIcon from '@mui/icons-material/LocalBar';
-import SportsHandballIcon from '@mui/icons-material/SportsHandball';
-import CameraAltIcon from '@mui/icons-material/CameraAlt';
-import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
-
-
+import useStyles from "./Header/styles";
+import RestaurantIcon from "@mui/icons-material/Restaurant";
+import BedIcon from "@mui/icons-material/Bed";
+import LocalBarIcon from "@mui/icons-material/LocalBar";
+import SportsHandballIcon from "@mui/icons-material/SportsHandball";
+import CameraAltIcon from "@mui/icons-material/CameraAlt";
+import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
+import AutoCompleteInput from "./AutoCompleteInput";
+import SearchNearByBtn from "./SearchNearByBtn";
 
 // import { IconButton } from '@mui/material';
 
-const InputForm = ({ numTravellers, setNumTravellers, businessType, setBusinessType}) => { 
-    const style = useStyles();
-    const handleChange = (e) => setBusinessType(e.target.value)
-    console.log(businessType);
-    console.log(numTravellers)
-    
-    return (
-        <>
-        {/* <TabContext value={numTravellers}>
+const InputForm = ({
+  numTravellers,
+  setNumTravellers,
+  businessType,
+  setBusinessType,
+  tabNumber,
+  map,
+  infowindow,
+  autoCompleteMarker,
+  routes,
+  setRoutes,
+  nearByLocation,
+  setNearByLocation,
+  placesService,
+  setClicker,
+}) => {
+  const style = useStyles();
+  const handleChange = (e) => setBusinessType(e.target.value);
+  console.log(businessType);
+  console.log(numTravellers);
+
+  return (
+    <>
+      {/* <TabContext value={numTravellers}>
   <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
     <TabList onChange={handleChange} aria-label="lab API tabs example">
       <Tab label="Item One" value="1" />
@@ -35,35 +61,95 @@ const InputForm = ({ numTravellers, setNumTravellers, businessType, setBusinessT
   <TabPanel value="2">Item Two</TabPanel>
   <TabPanel value="3">Item Three</TabPanel>
 </TabContext> */}
-        <Card variant="outlined" className = {style.overFlow}>
-              <div id = "container">
-                <div id = "first">
-                    <div class="grid-container" className={ style.grid_container}>
-                            <div class="grid-item">
-                                <Button onClick={handleChange} startIcon={<RestaurantIcon />} variant="contained" type="button" id="b1" value={"Food"} className = {style.small_btn}>Food</Button>
-                         </div>
-                        <div class="grid-item">
-                            <Button onClick={ handleChange} variant="contained" startIcon={ <BedIcon/>} type = "button" id = "b2" value={"Hotel"} className = {style.small_btn}>Hotel</Button>
-                        </div>
-                        <div class="grid-item">
-                            <Button onClick={ handleChange} variant="contained" startIcon={ <LocalBarIcon/>} type = "button" id = "b3" value={"Drink"} className = {style.small_btn}>Drink</Button>
-                        </div>
-                    </div>
-                    <div class="grid-container" className={ style.grid_container}>
-                        <div class="grid-item">
-                            <Button onClick={ handleChange} variant="contained" startIcon={ <CameraAltIcon/>} type = "button" id = "b1" value={"Site"} className = {style.small_btn}>Site</Button>
-                         </div>
-                        <div class="grid-item">
-                            <Button onClick={ handleChange} variant="contained" startIcon={ <ShoppingCartCheckoutIcon/>} type = "button" id = "b2" value={"Shop"} className = {style.small_btn}>Shop</Button>
-                        </div>
-                        <div class="grid-item">
-                                <Button onClick={handleChange} variant="contained" startIcon={<SportsHandballIcon />} type="button" id="b3" value={ "Sport"} className = {style.small_btn}>Sport</Button>
-                        </div>
-                    </div>
-                </div>
+      <Card variant="outlined" className={style.overFlow}>
+        <div id="container">
+          <div id="first">
+            <div class="grid-container" className={style.grid_container}>
+              <div class="grid-item">
+                <SearchNearByBtn
+                  map={map}
+                  infowindow={infowindow}
+                  placesService={placesService}
+                  setClicker={setClicker}
+                  nearByLocation={nearByLocation}
+                  setNearByLocation={setNearByLocation}
+                  startIcon={<RestaurantIcon />}
+                  value={"Food"}
+                  className={style.small_btn}
+                />
+              </div>
+              <div class="grid-item">
+                <SearchNearByBtn
+                  map={map}
+                  infowindow={infowindow}
+                  placesService={placesService}
+                  setClicker={setClicker}
+                  nearByLocation={nearByLocation}
+                  setNearByLocation={setNearByLocation}
+                  startIcon={<BedIcon />}
+                  value={"Hotel"}
+                  className={style.small_btn}
+                />
+              </div>
+              <div class="grid-item">
+                <SearchNearByBtn
+                  map={map}
+                  infowindow={infowindow}
+                  placesService={placesService}
+                  setClicker={setClicker}
+                  nearByLocation={nearByLocation}
+                  setNearByLocation={setNearByLocation}
+                  startIcon={<LocalBarIcon />}
+                  value={"Drink"}
+                  className={style.small_btn}
+                />
+              </div>
             </div>
-            <div class="grid-item">
-            <FormControl className={style.grid_container}>
+            <div class="grid-container" className={style.grid_container}>
+              <div class="grid-item">
+                <SearchNearByBtn
+                  map={map}
+                  infowindow={infowindow}
+                  placesService={placesService}
+                  setClicker={setClicker}
+                  nearByLocation={nearByLocation}
+                  setNearByLocation={setNearByLocation}
+                  startIcon={<CameraAltIcon />}
+                  value={"Site"}
+                  className={style.small_btn}
+                />
+              </div>
+              <div class="grid-item">
+                <SearchNearByBtn
+                  map={map}
+                  infowindow={infowindow}
+                  placesService={placesService}
+                  setClicker={setClicker}
+                  nearByLocation={nearByLocation}
+                  setNearByLocation={setNearByLocation}
+                  startIcon={<ShoppingCartCheckoutIcon />}
+                  value={"Shop"}
+                  className={style.small_btn}
+                />
+              </div>
+              <div class="grid-item">
+                <SearchNearByBtn
+                  map={map}
+                  infowindow={infowindow}
+                  placesService={placesService}
+                  setClicker={setClicker}
+                  nearByLocation={nearByLocation}
+                  setNearByLocation={setNearByLocation}
+                  startIcon={<SportsHandballIcon />}
+                  value={"Sport"}
+                  className={style.small_btn}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="grid-item">
+          {/* <FormControl className={style.grid_container}>
                 <Box display="flex">
                 <InputLabel className={style.inputRoot}>Num Travellers</InputLabel>
                 <Select value={numTravellers} onChange={(e)=>setNumTravellers(e.target.value)} className={style.inputInput}>
@@ -73,22 +159,28 @@ const InputForm = ({ numTravellers, setNumTravellers, businessType, setBusinessT
                     <MenuItem value={4}>4</MenuItem>
                 </Select>
             </Box>
-                </FormControl>
-            </div>
-            {[...Array(numTravellers)].map((e, i) =>
-                <FormControl>
-                    {/* Work on querySelector to getElementbyId for multipleids */}
-                    <InputLabel>Source Location {i + 1}</InputLabel>
-                    <Input id="pac-input" type="text"  className={style.inputInput} />
-                </FormControl>)
-                }
-            <FormControl>
-                 <InputLabel>destination Location</InputLabel>
-                <Input id="pac-input-dest" type="text" className={style.inputInput}/>
-            </FormControl>
-            </Card>
-            </>
-    );
-}
+                </FormControl> */}
+        </div>
+        {[...Array(numTravellers)].map((e, i) => (
+          <FormControl>
+            {/* Work on querySelector to getElementbyId for multipleids */}
+            {/* <Input id="pac-input" type="text" className={style.inputInput} /> */}
+            <AutoCompleteInput
+              title={"Input a location"}
+              index={tabNumber}
+              map={map}
+              infowindow={infowindow}
+              marker={autoCompleteMarker}
+              routes={routes}
+              setRoutes={setRoutes}
+              className={style.inputInput}
+            />
+          </FormControl>
+        ))}
+        <FormControl></FormControl>
+      </Card>
+    </>
+  );
+};
 
 export default InputForm;
