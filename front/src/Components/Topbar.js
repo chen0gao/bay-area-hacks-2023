@@ -27,9 +27,6 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import { useNavigate } from "react-router-dom";
 
-const pages = ["Home"];
-const settings = ["Dashboard", "Logout"];
-
 //for input css
 export default function Topbar() {
   const navigate = useNavigate();
@@ -51,7 +48,7 @@ export default function Topbar() {
     setAnchorElUser(null);
   };
 
-  const handleNavigatetoHomePage = () =>{
+  const handleNavigatetoHomePage = () => {
     navigate("/login");
   };
 
@@ -62,7 +59,7 @@ export default function Topbar() {
   const handleLogout = () => {
     localStorage.clear();
     navigate("/login");
-  }
+  };
 
   return (
     <AppBar position="static">
@@ -73,7 +70,6 @@ export default function Topbar() {
             variant="h6"
             noWrap
             component="a"
-            href="/"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -89,21 +85,30 @@ export default function Topbar() {
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleNavigatetoHomePage}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                {page}
-              </Button>
-            ))}
+            <Button
+              key="Home"
+              onClick={handleNavigatetoHomePage}
+              sx={{ my: 2, color: "white", display: "block" }}
+            >
+              Home
+            </Button>
+
+            <Button
+              key="Dashboard"
+              onClick={handleOpenDashboard}
+              sx={{ my: 2, color: "white", display: "block" }}
+            >
+              Dashboard
+            </Button>
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="https://cdn-icons-png.flaticon.com/512/1791/1791400.png" />
+                <Avatar
+                  alt="Remy Sharp"
+                  src="https://cdn-icons-png.flaticon.com/512/1791/1791400.png"
+                />
               </IconButton>
             </Tooltip>
             <Menu
@@ -122,11 +127,8 @@ export default function Topbar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              <MenuItem onClick={handleOpenDashboard}>
-                  <Typography textAlign="center">Dashboard</Typography>
-              </MenuItem>
               <MenuItem onClick={handleLogout}>
-                  <Typography textAlign="center">Logout</Typography>
+                <Typography textAlign="center">Logout</Typography>
               </MenuItem>
             </Menu>
           </Box>
