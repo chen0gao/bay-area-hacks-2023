@@ -11,20 +11,21 @@ import LocalBarIcon from '@mui/icons-material/LocalBar';
 import SportsHandballIcon from '@mui/icons-material/SportsHandball';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
-import Clicker from "./Clicker";
+import TripHistory from "./TripHistory";
+// import Trip from "./Trip/Trip";
 
 
 
 // import { IconButton } from '@mui/material';
 //map,infowindow,autoCompleteMarker,setLocations,
 
-const InputForm = ({ numTravellers, setNumTravellers, businessType, setBusinessType, clicker, setLocations}) => { 
+const InputForm = ({ numTravellers, setNumTravellers, businessType, setBusinessType, data}) => { 
     const style = useStyles();
     const handleChange = (e) => setBusinessType(e.target.value)
     
     return (
         <>
-        <TabContext value={numTravellers}>
+        {/* <TabContext value={numTravellers}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <TabList onChange={handleChange} aria-label="lab API tabs example">
                 <Tab label="Item One" value="1" />
@@ -35,8 +36,22 @@ const InputForm = ({ numTravellers, setNumTravellers, businessType, setBusinessT
             <TabPanel value="1">Person 1</TabPanel>
             <TabPanel value="2">Person 2</TabPanel>
             <TabPanel value="3">Person 3</TabPanel>
-        </TabContext>
-        <Card variant="outlined" className = {style.overFlow}>
+        </TabContext> */}
+            <Card variant="outlined"
+                style={{
+                    paddingTop: '20px',
+                    paddingBottom: '20px',
+                    paddingRight: '10px',
+                    paddingLeft: '10px',
+                    width: '100%',
+                    maxWidth: 360,
+                    bgcolor: 'background.paper',
+                    position: 'relative',
+                    height: '50vh',
+                    overflow: 'auto',
+                    maxHeight: '90vh',
+                    '& ul': { padding: 0 },
+                }}>
               <div id = "container">
                 <div id = "first">
                     <div class="grid-container" className={ style.grid_container}>
@@ -94,12 +109,33 @@ const InputForm = ({ numTravellers, setNumTravellers, businessType, setBusinessT
                  <InputLabel>destination location</InputLabel>
                 <Input id="pac-input-dest" type="text" className={style.inputInput}/>
                 </FormControl>
-                <FormControl className={style.grid_container}>
-                <Clicker clicker={clicker} setLocations={setLocations} />
-                <Button onClick={handleChange} variant="contained" type="button" id="b3" value={"Find "} className={style.search}>Toggle Path</Button>
-                    <Button onClick={handleChange} variant="contained" type="button" id="b3" value={"Sport"} className={style.search}> Seach Nearby Business</Button>
-                <Button onClick={handleChange} variant="contained" type="button" id="b3" value={"Sport"} className={style.search}>Add Point to Trip</Button>
+                <FormControl>
+                    <div class="grid-container" className={style.grid_container2}>
+                    <div class="grid-item">
+                            <Button onClick={handleChange} variant="contained" type="button" id="b3" value={"Find "} className={style.search}>Toggle Path</Button>
+                        </div>
+                        <div class="grid-item">
+                        <Button onClick={handleChange} variant="contained" type="button" id="b3" value={"Sport"} className={style.search}>Add Point</Button>
+                        </div>
+                   </div>
                 </FormControl>
+            </Card>
+            <Card    style={{
+                    paddingTop: '20px',
+                    paddingBottom: '20px',
+                    paddingRight: '0px',
+                    paddingLeft: '0px',
+                    width: '100%',
+                    maxWidth: 360,
+                    bgcolor: 'background.paper',
+                    position: 'relative',
+                    height: '40vh',
+                    overflow: 'auto',
+                    maxHeight: '90vh',
+                    '& ul': { padding: 0 },
+                }}>
+                {/* <Trip /> */}
+                <TripHistory data={ data} />
             </Card>
             </>
     );

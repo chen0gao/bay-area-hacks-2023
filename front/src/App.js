@@ -2,13 +2,15 @@ import "./static/App.css";
 import React, { useState, useEffect } from "react";
 import SearchBoxResult from "./components/SearchBoxResult";
 import Trip from "./components/Trip/Trip";
-import { Box, CssBaseline, Grid } from "@material-ui/core";
+import { Box, CssBaseline, Grid, Card } from "@material-ui/core";
 // import SearchIcon from '@material-ui/icons/Search';
 import Header from "./components/Header/Header";
 import TogglePath from "./components/TogglePath";
 import SearchNearByBtn from "./components/SearchNearByBtn";
 import AutoCompleteInput from "./components/AutoCompleteInput";
 import Clicker from "./components/Clicker";
+import styles from "./components/Header/styles";
+import useStyles from './components/Header/styles';
 import { config } from "./config";
 import TripHistory from "./components/TripHistory";
 import InputForm from "./components/InputForm";
@@ -25,6 +27,7 @@ function App() {
   const [route, setRoute] = useState({});
   const [numTravellers, setNumTravellers] = useState("");
   const [businessType, setBusinessType] = useState("");
+  const style = useStyles();
 
   function onScriptLoad() {
     // Initializing Map components
@@ -116,13 +119,14 @@ function App() {
       <CssBaseline />
       <Header />
       <Grid container spacing={3} sx={{ overflow: 'auto', maxHeight: '90vh%' }}>
-        <Grid item xs={12} md={3}>
+        <Grid item xs={12} md={3} className={style.grid_container3}>
           <InputForm numTravellers={numTravellers} setNumTravellers={setNumTravellers}
             businessType={businessType} setBusinessType={setBusinessType} index={0}
             map={map}
             infowindow={infowindow}
             marker={autoCompleteMarker}
-            setLocations={setLocations} />
+            setLocations={setLocations}
+            data={locations} />
 
           {/* <AutoCompleteInput
             index={0}
@@ -138,13 +142,13 @@ function App() {
             marker={autoCompleteMarker}
             setLocations={setLocations}
           />
-          <AutoCompleteInput
+          {/* <AutoCompleteInput
             index={2}
             map={map}
             infowindow={infowindow}
             marker={autoCompleteMarker}
             setLocations={setLocations}
-          />
+          /> */}
           <SearchBoxResult data={locations} />
           <TogglePath
             map={map}
@@ -163,22 +167,50 @@ function App() {
           <Clicker clicker={clicker} setLocations={setLocations} />
         </Grid>
         <Grid item xs={12} md={3}>
-          <Trip />
-          <TripHistory data={locations} />
+          <Card style={{
+            paddingTop: '10px',
+            paddingBottom: '10px',
+            paddingRight: '10px',
+            paddingLeft: '10px',
+            width: '100%',
+            maxWidth: 360,
+            bgcolor: 'background.paper',
+            position: 'relative',
+            height: '120vh',
+            overflow: 'auto',
+            maxHeight: '90vh',
+            '& ul': { padding: 0 },
+          }}>
+            <div id="sidebar"></div>
+            <div id="infowindow-content">
+              <img id="place-icon" src="" height="16" width="16" />
+              <span id="place-name" class="title"></span>
+              <br />
+              Place ID <span id="place-id"></span>
+              <br />
+              <span id="place-address"></span>
+            </div>
+          </Card>
         </Grid>
         <Grid item xs={12} md={6}>
-          <div style={{ width: 900, height: "85vh" }} id="map" />
+          <Card style={{
+            paddingTop: '10px',
+            paddingBottom: '10px',
+            paddingRight: '10px',
+            paddingLeft: '10px',
+            width: '100%',
+            maxWidth: 700,
+            bgcolor: 'background.paper',
+            position: 'relative',
+            height: '120vh',
+            overflow: 'auto',
+            maxHeight: '90vh',
+            '& ul': { padding: 0 },
+          }}>
+            <div style={{ width: 900, height: "85vh" }} id="map" />
+          </Card>
         </Grid>
       </Grid>
-      <div id="sidebar"></div>
-      <div id="infowindow-content">
-        <img id="place-icon" src="" height="16" width="16" />
-        <span id="place-name" class="title"></span>
-        <br />
-        Place ID <span id="place-id"></span>
-        <br />
-        <span id="place-address"></span>
-      </div>
     </>
   );
 }
