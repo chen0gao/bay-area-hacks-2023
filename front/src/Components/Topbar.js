@@ -2,6 +2,7 @@ import "../static/css/main.css";
 import "../static/css/css.css";
 import "../static/css/css1.css";
 import "uikit/dist/js/uikit.js";
+import "../static/Topbar.css";
 import * as React from "react";
 import { EventHandler, useEffect, useState } from "react";
 import {
@@ -62,7 +63,7 @@ export default function Topbar() {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" id="Topbar">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <DriveEtaIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
@@ -71,9 +72,8 @@ export default function Topbar() {
             noWrap
             component="a"
             sx={{
-              
               display: { xs: "none", md: "flex" },
-              
+
               color: "inherit",
               textDecoration: "none",
             }}
@@ -94,7 +94,7 @@ export default function Topbar() {
             <Button
               key="Dashboard"
               onClick={handleOpenDashboard}
-              sx={{  color: "white", display: "block" }}
+              sx={{ color: "white", display: "block" }}
             >
               Dashboard
             </Button>

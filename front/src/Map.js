@@ -8,7 +8,7 @@ import Trip from "./components/Trip/Trip";
 import { Box } from "@mui/system";
 import { Card } from "@mui/material";
 import Grid from "@mui/material/Grid";
-import { CssBaseline} from "@material-ui/core";
+import { CssBaseline } from "@material-ui/core";
 // import SearchIcon from '@material-ui/icons/Search';
 import Header from "./components/Header/Header";
 import AddPath from "./components/AddPath";

@@ -175,7 +175,7 @@ const InputForm = ({
               */}
         <FormControl>
           {/* Work on querySelector to getElementbyId for multipleids */}
-          <InputLabel>Search Location</InputLabel>
+          {/* <InputLabel>Search Location</InputLabel> */}
           <AutoCompleteInput
             index={tabNumber}
             map={map}
