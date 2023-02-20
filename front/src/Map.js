@@ -142,43 +142,20 @@ function Map() {
             placesService={placesService}
             setClicker={setClicker}
           />
-
-          {/* <AutoCompleteInput
-            index={0}
-            map={map}
-            infowindow={infowindow}
-            marker={autoCompleteMarker}
-            setLocations={setLocations}
-          /> */}
           <AutoCompleteInput
-            index={1}
+            index={tabNumber}
             map={map}
             infowindow={infowindow}
             marker={autoCompleteMarker}
-            setLocations={setLocations}
+            routes={routes}
+            setRoutes={setRoutes}
           />
-          {/* <AutoCompleteInput
-            index={2}
-            map={map}
-            infowindow={infowindow}
-            marker={autoCompleteMarker}
-            setLocations={setLocations}
-          /> */}
-          {/* <SearchBoxResult index={tabNumber} routes={routes} /> */}
           <AddPath
             index={0}
             map={map}
             directionsService={directionsService}
             routes={routes}
             setRoutes={setRoutes}
-          />
-          <SearchNearByBtn
-            map={map}
-            infowindow={infowindow}
-            placesService={placesService}
-            setClicker={setClicker}
-            nearByLocation={nearByLocation}
-            setNearByLocation={setNearByLocation}
           />
           <AddLocation
             index={0}
@@ -206,7 +183,7 @@ function Map() {
           >
             <div id="sidebar"></div>
             <div id="infowindow-content">
-              <img id="place-icon" src="" height="16" width="16" />
+              {/* <img id="place-icon" src="" height="16" width="16" /> */}
               <span id="place-name" class="title"></span>
               <br />
               Place ID <span id="place-id"></span>
