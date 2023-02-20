@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { createRoute } from "../gmapApi";
+import styles from "./Header/styles";
+import useStyles from "./Header/styles";
+import { Button } from "@material-ui/core";
 
 function AddPath({ index, travel, map, directionsService, routes, setRoutes }) {
   function clickEvent() {
@@ -38,7 +41,7 @@ function AddPath({ index, travel, map, directionsService, routes, setRoutes }) {
       });
     });
 
-    console.log(travel);
+    // console.log(travel);
 
     createRoute(routes[index].directionsRenderer, directionsService, {
       color: "red",
@@ -53,7 +56,16 @@ function AddPath({ index, travel, map, directionsService, routes, setRoutes }) {
 
   return (
     <>
-      <button onClick={clickEvent}>Add Path for {index}</button>
+      <Button
+        variant="contained"
+        type="button"
+        id="b3"
+        value={"Find "}
+        // className={style.search}
+        onClick={clickEvent}
+      >
+        Add Path
+      </Button>
     </>
   );
 }

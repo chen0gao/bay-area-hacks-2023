@@ -27,3 +27,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+front/src/Components/AutoCompleteInput.jsx
+front/src/Components/SearchNearByBtn.jsx
+.gitignore

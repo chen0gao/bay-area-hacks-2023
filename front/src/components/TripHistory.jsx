@@ -6,7 +6,6 @@ import PlaceIcon from "@mui/icons-material/Place";
 function TripHistory({ routes, setRoutes }) {
   let data = null;
   const handleDelete = (i) => {
-    // console.log(i);
     routes[0].locations.splice(i, 1);
 
     setRoutes({ ...routes });

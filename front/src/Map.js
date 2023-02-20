@@ -3,9 +3,6 @@ import React, { useState, useEffect } from "react";
 import { Box, CssBaseline, Grid, Card } from "@material-ui/core";
 // import SearchIcon from '@material-ui/icons/Search';
 import Header from "./components/Header/Header";
-import AddPath from "./components/AddPath";
-import AutoCompleteInput from "./components/AutoCompleteInput";
-import AddLocation from "./components/AddLocation";
 import useStyles from "./components/Header/styles";
 import { config } from "./config";
 import InputForm from "./components/InputForm";
@@ -13,7 +10,6 @@ import TravelMode from "./components/TravelMode";
 
 function Map() {
   const [tabNumber, setTabNumber] = useState(0);
-  const [locations, setLocations] = useState([]);
   const [clicker, setClicker] = useState({});
   const [placesService, setPlacesService] = useState(null);
   const [directionsService, setDirectionsService] = useState(null);
@@ -23,8 +19,6 @@ function Map() {
   const [autoCompleteMarker, setAutoCompleteMarker] = useState(null);
 
   const [routes, setRoutes] = useState({});
-  const [numTravellers, setNumTravellers] = useState("");
-  const [businessType, setBusinessType] = useState("");
   const [travel, setTravel] = useState("Driving");
   const style = useStyles();
 
@@ -80,12 +74,12 @@ function Map() {
               });
               infowindow_.close();
               infowindow_.setPosition(place.geometry.location);
-              infowindowContent.children["place-icon"].src = place.icon;
-              infowindowContent.children["place-name"].textContent = place.name;
-              infowindowContent.children["place-id"].textContent =
-                place.place_id;
-              infowindowContent.children["place-address"].textContent =
-                place.formatted_address;
+              // infowindowContent.children["place-icon"].src = place.icon;
+              // infowindowContent.children["place-name"].textContent = place.name;
+              // infowindowContent.children["place-id"].textContent =
+              //   place.place_id;
+              // infowindowContent.children["place-address"].textContent =
+              //   place.formatted_address;
               infowindow_.open(map_);
             }
           });
@@ -116,7 +110,6 @@ function Map() {
       onScriptLoad();
     }
   }, []);
-
   return (
     <>
       <CssBaseline />
@@ -132,9 +125,10 @@ function Map() {
           />
           <InputForm
             // numTravellers={numTravellers}
-            setNumTravellers={setNumTravellers}
-            businessType={businessType}
-            setBusinessType={setBusinessType}
+            travel={travel}
+            tabNumber={tabNumber}
+            directionsService={directionsService}
+            clicker={clicker}
             index={tabNumber}
             map={map}
             infowindow={infowindow}
@@ -145,28 +139,6 @@ function Map() {
             setNearByLocation={setNearByLocation}
             placesService={placesService}
             setClicker={setClicker}
-          />
-          <AutoCompleteInput
-            index={tabNumber}
-            map={map}
-            infowindow={infowindow}
-            marker={autoCompleteMarker}
-            routes={routes}
-            setRoutes={setRoutes}
-          />
-          <AddPath
-            index={0}
-            map={map}
-            directionsService={directionsService}
-            routes={routes}
-            setRoutes={setRoutes}
-            travel={travel}
-          />
-          <AddLocation
-            index={0}
-            clicker={clicker}
-            routes={routes}
-            setRoutes={setRoutes}
           />
         </Grid>
         <Grid item xs={12} md={3}>
@@ -205,7 +177,7 @@ function Map() {
               paddingRight: "10px",
               paddingLeft: "10px",
               width: "100%",
-              maxWidth: 700,
+              maxWidth: 750,
               bgcolor: "background.paper",
               position: "relative",
               height: "120vh",
@@ -214,7 +186,7 @@ function Map() {
               "& ul": { padding: 0 },
             }}
           >
-            <div style={{ width: 900, height: "85vh" }} id="map"></div>
+            <div style={{ width: 730, height: "85vh" }} id="map"></div>
             <div />
           </Card>
         </Grid>
