@@ -1,15 +1,20 @@
-import "./static/App.css";
+import "./static/css/main.css";
+import "./static/css/css.css";
+import "./static/css/css1.css";
+import "uikit/dist/js/uikit.js";
 import React, { useState, useEffect } from "react";
 import SearchBoxResult from "./components/SearchBoxResult";
 import Trip from "./components/Trip/Trip";
-import { Box, CssBaseline, Grid, Card } from "@material-ui/core";
+import { Box } from "@mui/system";
+import { Card } from "@mui/material";
+import Grid from "@mui/material/Grid";
+import { CssBaseline} from "@material-ui/core";
 // import SearchIcon from '@material-ui/icons/Search';
 import Header from "./components/Header/Header";
 import AddPath from "./components/AddPath";
 import SearchNearByBtn from "./components/SearchNearByBtn";
 import AutoCompleteInput from "./components/AutoCompleteInput";
 import AddLocation from "./components/AddLocation";
-import styles from "./components/Header/styles";
 import useStyles from "./components/Header/styles";
 import { config } from "./config";
 import TripHistory from "./components/TripHistory";
@@ -123,7 +128,6 @@ function Map() {
   return (
     <>
       <CssBaseline />
-      <Header />
       <Grid container spacing={3} sx={{ overflow: "auto", maxHeight: "90vh%" }}>
         <Grid item xs={12} md={3} className={style.grid_container3}>
           <InputForm

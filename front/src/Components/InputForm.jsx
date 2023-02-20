@@ -1,15 +1,8 @@
-import {
-  Button,
-  InputUnstyled,
-  InputLabel,
-  MenuItem,
-  FormControl,
-  Select,
-  Box,
-  Card,
-  Input,
-  Grid,
-} from "@material-ui/core";
+import Button from "@mui/material/Button";
+import InputLabel from "@mui/material/InputLabel";
+import Card from "@mui/material/Card";
+import FormControl from "@mui/material/FormControl";
+import Input from "@mui/material/Input";
 import { Tab } from "@mui/material";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import useState from "react";

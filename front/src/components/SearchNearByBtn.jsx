@@ -1,5 +1,5 @@
 import { searchNearBy } from "../gmapApi";
-import { Button } from "@material-ui/core";
+import { Button } from "@mui/material";
 
 function SearchNearByBtn({
   map,
