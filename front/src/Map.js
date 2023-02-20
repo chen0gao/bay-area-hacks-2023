@@ -9,6 +9,7 @@ import AddLocation from "./components/AddLocation";
 import useStyles from "./components/Header/styles";
 import { config } from "./config";
 import InputForm from "./components/InputForm";
+import TravelMode from "./components/TravelMode";
 
 function Map() {
   const [tabNumber, setTabNumber] = useState(0);
@@ -24,6 +25,7 @@ function Map() {
   const [routes, setRoutes] = useState({});
   const [numTravellers, setNumTravellers] = useState("");
   const [businessType, setBusinessType] = useState("");
+  const [travel, setTravel] = useState("Driving");
   const style = useStyles();
 
   function onScriptLoad() {
@@ -121,6 +123,13 @@ function Map() {
       <Header />
       <Grid container spacing={3} sx={{ overflow: "auto", maxHeight: "90vh%" }}>
         <Grid item xs={12} md={3} className={style.grid_container3}>
+          <TravelMode
+            index={0}
+            directionsService={directionsService}
+            routes={routes}
+            setRoutes={setRoutes}
+            setTravel={setTravel}
+          />
           <InputForm
             // numTravellers={numTravellers}
             setNumTravellers={setNumTravellers}
@@ -151,6 +160,7 @@ function Map() {
             directionsService={directionsService}
             routes={routes}
             setRoutes={setRoutes}
+            travel={travel}
           />
           <AddLocation
             index={0}
@@ -204,7 +214,8 @@ function Map() {
               "& ul": { padding: 0 },
             }}
           >
-            <div style={{ width: 900, height: "85vh" }} id="map" />
+            <div style={{ width: 900, height: "85vh" }} id="map"></div>
+            <div />
           </Card>
         </Grid>
       </Grid>
