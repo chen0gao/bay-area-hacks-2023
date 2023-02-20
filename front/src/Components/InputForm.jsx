@@ -1,5 +1,6 @@
 import {Button, InputUnstyled, InputLabel, MenuItem, FormControl, Select, Box, Card, Input, Grid } from "@material-ui/core";
 import { Tab } from '@mui/material'
+import AutoCompleteInput from "./AutoCompleteInput";
 import { TabContext, TabList, TabPanel} from '@mui/lab'
 import useState from "react";
 import styles from "./Header/styles";
@@ -15,7 +16,7 @@ import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 
 // import { IconButton } from '@mui/material';
 
-const InputForm = ({ numTravellers, setNumTravellers, businessType, setBusinessType}) => { 
+const InputForm = ({ numTravellers, setNumTravellers, businessType, setBusinessType, map,infowindow,autoCompleteMarker,setLocations }) => { 
     const style = useStyles();
     const handleChange = (e) => setBusinessType(e.target.value)
     console.log(businessType);
@@ -23,18 +24,18 @@ const InputForm = ({ numTravellers, setNumTravellers, businessType, setBusinessT
     
     return (
         <>
-        {/* <TabContext value={numTravellers}>
-  <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-    <TabList onChange={handleChange} aria-label="lab API tabs example">
-      <Tab label="Item One" value="1" />
-      <Tab label="Item Two" value="2" />
-      <Tab label="Item Three" value="3" />
-    </TabList>
-  </Box>
-  <TabPanel value="1">Item One</TabPanel>
-  <TabPanel value="2">Item Two</TabPanel>
-  <TabPanel value="3">Item Three</TabPanel>
-</TabContext> */}
+        <TabContext value={numTravellers}>
+            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                <TabList onChange={handleChange} aria-label="lab API tabs example">
+                <Tab label="Item One" value="1" />
+                <Tab label="Item Two" value="2" />
+                <Tab label="Item Three" value="3" />
+                </TabList>
+            </Box>
+            <TabPanel value="1">Person 1</TabPanel>
+            <TabPanel value="2">Person 2</TabPanel>
+            <TabPanel value="3">Person 3</TabPanel>
+        </TabContext>
         <Card variant="outlined" className = {style.overFlow}>
               <div id = "container">
                 <div id = "first">
@@ -64,7 +65,14 @@ const InputForm = ({ numTravellers, setNumTravellers, businessType, setBusinessT
             </div>
             <div class="grid-item">
             <FormControl className={style.grid_container}>
-                <Box display="flex">
+                        <Box display="flex">
+                        <AutoCompleteInput
+            index={0}
+            map={map}
+            infowindow={infowindow}
+            marker={autoCompleteMarker}
+            setLocations={setLocations}
+          />
                 <InputLabel className={style.inputRoot}>Num Travellers</InputLabel>
                 <Select value={numTravellers} onChange={(e)=>setNumTravellers(e.target.value)} className={style.inputInput}>
                     <MenuItem value={1}>1</MenuItem>
@@ -78,14 +86,19 @@ const InputForm = ({ numTravellers, setNumTravellers, businessType, setBusinessT
             {[...Array(numTravellers)].map((e, i) =>
                 <FormControl>
                     {/* Work on querySelector to getElementbyId for multipleids */}
-                    <InputLabel>Source Location {i + 1}</InputLabel>
+                    <InputLabel>Source location {i + 1}</InputLabel>
                     <Input id="pac-input" type="text"  className={style.inputInput} />
                 </FormControl>)
                 }
             <FormControl>
-                 <InputLabel>destination Location</InputLabel>
+                 <InputLabel>destination location</InputLabel>
                 <Input id="pac-input-dest" type="text" className={style.inputInput}/>
-            </FormControl>
+                </FormControl>
+                <FormControl className={ style.grid_container}>
+                <Button onClick={handleChange} variant="contained" startIcon={<SportsHandballIcon />} type="button" id="b3" value={"Find "} className={style.search}>Toggle Path</Button>
+                <Button onClick={handleChange} variant="contained" startIcon={<SportsHandballIcon />} type="button" id="b3" value={"Sport"} className={style.search}>Sport</Button>
+                <Button onClick={handleChange} variant="contained" startIcon={<SportsHandballIcon />} type="button" id="b3" value={"Sport"} className={style.search}>Sport</Button>
+                </FormControl>
             </Card>
             </>
     );
