@@ -203,7 +203,7 @@ const InputForm = ({
           </div>
         </FormControl>
       </Card>
-      {/* <Card
+      <Card
         style={{
           paddingTop: "20px",
           paddingBottom: "20px",
@@ -220,7 +220,7 @@ const InputForm = ({
         }}
       >
         <TripHistory routes={routes} />
-      </Card> */}
+      </Card>
     </>
   );
 };
