@@ -1,9 +1,10 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
+import * as React from "react";
+import PropTypes from "prop-types";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import Card from "./Card";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -34,7 +35,7 @@ TabPanel.propTypes = {
 function a11yProps(index) {
   return {
     id: `vertical-tab-${index}`,
-    'aria-controls': `vertical-tabpanel-${index}`,
+    "aria-controls": `vertical-tabpanel-${index}`,
   };
 }
 
@@ -47,7 +48,12 @@ export default function UserDashboard() {
 
   return (
     <Box
-      sx={{ flexGrow: 1, bgcolor: 'background.paper', display: 'flex', height: 224 }}
+      sx={{
+        flexGrow: 1,
+        bgcolor: "background.paper",
+        display: "flex",
+        height: 224,
+      }}
     >
       <Tabs
         orientation="vertical"
@@ -55,17 +61,40 @@ export default function UserDashboard() {
         value={value}
         onChange={handleChange}
         aria-label="Vertical tabs example"
-        sx={{ borderRight: 1, borderColor: 'divider' }}
+        sx={{ borderRight: 1, borderColor: "divider" }}
       >
         <Tab label="Upcoming Trips" {...a11yProps(0)} />
         <Tab label="Previous Trips" {...a11yProps(1)} />
-        
       </Tabs>
       <TabPanel value={value} index={0}>
-        Item One
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            "& > :not(style)": {
+              m: 1,
+            },
+          }}
+        >
+          <Card />
+          <Card />
+          <Card />
+        </Box>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Item Two
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            "& > :not(style)": {
+              m: 1,
+            },
+          }}
+        >
+          <Card />
+          <Card />
+          <Card />
+        </Box>
       </TabPanel>
     </Box>
   );
