@@ -27,6 +27,19 @@ function Map() {
     const [route, setRoute] = useState({});
     const [numTravellers, setNumTravellers] = useState("");
     const [businessType, setBusinessType] = useState("");
+
+    // const postTripHandler = (trip) => {
+    //     try {
+    //         console.log(axios.post(/trips/${ userId }, trip));
+    //     } catch (err) {
+    //         console.log(err);
+    //     }
+    // }
+    // const trip = {
+    //     "date": String(today.getDate()),
+    //     "locations": { locations },
+    // }
+
     const style = useStyles();
 
     function onScriptLoad() {
@@ -126,7 +139,9 @@ function Map() {
                         infowindow={infowindow}
                         marker={autoCompleteMarker}
                         setLocations={setLocations}
-                        data={locations} />
+                        data={locations}
+                        // postTripHandler={postTripHander}
+                        locations={locations} />
 
                     {/* <AutoCompleteInput
             index={0}

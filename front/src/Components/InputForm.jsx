@@ -19,7 +19,7 @@ import TripHistory from "./TripHistory";
 // import { IconButton } from '@mui/material';
 //map,infowindow,autoCompleteMarker,setLocations,
 
-const InputForm = ({ numTravellers, setNumTravellers, businessType, setBusinessType, data}) => { 
+const InputForm = ({numTravellers, setNumTravellers, businessType, setBusinessType, data, postTripHander}) => { 
     const style = useStyles();
     const handleChange = (e) => setBusinessType(e.target.value)
     
@@ -110,13 +110,16 @@ const InputForm = ({ numTravellers, setNumTravellers, businessType, setBusinessT
                 <Input id="pac-input-dest" type="text" className={style.inputInput}/>
                 </FormControl>
                 <FormControl>
-                    <div class="grid-container" className={style.grid_container2}>
+                    <div class="grid-container" className={style.grid_container1}>
                     <div class="grid-item">
                             <Button onClick={handleChange} variant="contained" type="button" id="b3" value={"Find "} className={style.search}>Toggle Path</Button>
                         </div>
                         <div class="grid-item">
                         <Button onClick={handleChange} variant="contained" type="button" id="b3" value={"Sport"} className={style.search}>Add Point</Button>
                         </div>
+                        {/* <div class="grid-item">
+                        <Button onClick={postTripHander} variant="contained" type="button" id="b3" value={"Sport"} className={style.search}>Save Trip</Button>
+                        </div> */}
                    </div>
                 </FormControl>
             </Card>
