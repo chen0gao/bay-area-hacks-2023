@@ -1,6 +1,7 @@
 <!-- ABOUT THE PROJECT -->
 # Bay Area Hacks 2023
-https://bay-area-hacks-society.devpost.com/
+Hackathon Link: https://bay-area-hacks-society.devpost.com/ \
+Project Link: https://devpost.com/software/journey-planner-travel-smarter-not-harder
 
 ## About The Project
 ![image](https://user-images.githubusercontent.com/40931390/220187322-d1a14a7a-fa94-46cb-9b88-6758df77e6f3.png)
