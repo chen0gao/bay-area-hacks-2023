@@ -15,21 +15,21 @@ const bull = (
   </Box>
 );
 
-export default function BasicCard() {
+export default function BasicCard({date, start, dest}) {
   return (
     <Card sx={{ minWidth: 275 }}>
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          Date
+          {date}
         </Typography>
         <Typography sx={{ mb: 1.5 }} variant="h5" component="div">
-          Start Location
+          {start}
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
           to
         </Typography>
         <Typography variant="h5" component="div">
-          Destination
+          {dest}
         </Typography>
 
       </CardContent>

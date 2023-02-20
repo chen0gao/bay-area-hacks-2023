@@ -5,6 +5,8 @@ import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Card from "./Card";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -40,11 +42,36 @@ function a11yProps(index) {
 }
 
 export default function UserDashboard() {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
+  const [trip, setTrip] = useState([]);
+  const [user, setUser] = useState([]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  // const getTripHandler = () =>{
+  //   try{
+  //     const res = axios.get("/trips/" + userId);
+  //     console.log(res);
+  //   }catch(err){
+  //     console.log(err);
+  //   }
+  // }
+
+  useEffect(() => {
+    const result = JSON.parse(localStorage.getItem("user_info"));
+    setUser(result);
+    try {
+      const userId = user._id;
+      axios.get("/trips/" + userId).then((res)=>{
+        setTrip(res);
+      })
+      console.log(trip);
+    } catch (err) {
+      console.log(err);
+    }
+  }, []);
 
   return (
     <Box
@@ -55,16 +82,8 @@ export default function UserDashboard() {
         height: 110,
       }}
     >
-      <Tabs
-        orientation="vertical"
-        variant="scrollable"
-        value={value}
-        onChange={handleChange}
-        aria-label="Vertical tabs example"
-        sx={{ borderRight: 1, borderColor: "divider" }}
-      >
-        <Tab label="Upcoming Trips"  />
-        <Tab label="Previous Trips"  />
+      <Tabs orientation="vertical" value={value} onChange={handleChange}>
+        <Tab label="Trip History" />
       </Tabs>
       <TabPanel value={value} index={0}>
         <Box
@@ -76,22 +95,24 @@ export default function UserDashboard() {
             },
           }}
         >
-          <Card />
-          <Card />
-          <Card />
-        </Box>
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <Box
-          sx={{
-            display: "flex",
-            flexWrap: "wrap",
-            "& > :not(style)": {
-              m: 1,
-            },
-          }}
-        >
-          <Card />
+          
+
+
+          
+          {/* {trip && trip.data.map((ele,index)=>{
+            return (
+              "test"
+              // <Card
+              // date={ele.date}
+              // start={ele.locations[0]}
+              // dest={ele.locations[ele.locations.length-1]}
+              // />
+            )
+          })} */}
+          <Card 
+          start="test"
+          dest="dest"
+          date="testDate"/>
           <Card />
           <Card />
         </Box>
