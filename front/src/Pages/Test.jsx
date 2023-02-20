@@ -16,7 +16,7 @@ export default function Home() {
       {"name":"new york", "latitude":3, "longtitude":3},
       {"name":"new york", "latitude":4, "longtitude":4}
     ]
-    }
+  }
   
   useEffect(() => {
     const fetchUser = async ()=>{
