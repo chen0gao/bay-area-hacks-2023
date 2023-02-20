@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from "react";
 
-function AutoCompleteInput({ index, map, infowindow, marker, setLocations }) {
+function AutoCompleteInput({
+  index,
+  map,
+  infowindow,
+  marker,
+  routes,
+  setRoutes,
+}) {
   let isLoading = false;
 
   function initial() {
@@ -43,15 +50,17 @@ function AutoCompleteInput({ index, map, infowindow, marker, setLocations }) {
 
       console.log(place);
 
-      // console.log(place.geometry.location.lng().toString());
-      setLocations((locations) => [
-        ...locations,
-        {
-          name: place.name,
-          lat: place.geometry.location.toJSON().lat,
-          lng: place.geometry.location.toJSON().lng,
-        },
-      ]);
+      if (!(index in routes)) {
+        routes[index] = { locations: [] };
+      }
+
+      routes[index].locations.push({
+        name: place.name,
+        lat: place.geometry.location.toJSON().lat,
+        lng: place.geometry.location.toJSON().lng,
+      });
+
+      routes[index].src = setRoutes({ ...routes });
 
       marker.setPosition(place.geometry.location);
       marker.setVisible(true);

@@ -4,22 +4,25 @@ import SearchBoxResult from "./components/SearchBoxResult";
 import { Box, CssBaseline, Grid } from "@material-ui/core";
 // import SearchIcon from '@material-ui/icons/Search';
 import Header from "./components/Header/Header";
-import TogglePath from "./components/TogglePath";
+import AddPath from "./components/AddPath";
+import ClearPath from "./components/ClearPath";
 import SearchNearByBtn from "./components/SearchNearByBtn";
 import AutoCompleteInput from "./components/AutoCompleteInput";
-import Clicker from "./components/Clicker";
+import ToggleIndex from "./components/ToggleIndex";
+import AddLocation from "./components/AddLocation";
 import { config } from "./config";
 
 function App() {
-  const [locations, setLocations] = useState([]);
+  const [tabNumber, setTabNumber] = useState(0);
   const [clicker, setClicker] = useState({});
   const [placesService, setPlacesService] = useState(null);
+  const [directionsService, setDirectionsService] = useState(null);
   const [infowindow, setInfowindow] = useState(null);
   const [map, setMap] = useState(null);
   const [nearByLocation, setNearByLocation] = useState({});
   const [autoCompleteMarker, setAutoCompleteMarker] = useState(null);
 
-  const [route, setRoute] = useState({});
+  const [routes, setRoutes] = useState({});
 
   function onScriptLoad() {
     // Initializing Map components
@@ -33,6 +36,9 @@ function App() {
     setPlacesService(pService);
     const infowindow_ = new window.google.maps.InfoWindow();
     setInfowindow(infowindow_);
+
+    const directionsService_ = new window.google.maps.DirectionsService();
+    setDirectionsService(directionsService_);
 
     const marker = new window.google.maps.Marker({
       map_,
@@ -114,32 +120,39 @@ function App() {
         <Grid item xs={12} md={6}>
           {/* <Search /> */}
           <AutoCompleteInput
-            index={0}
+            index={tabNumber}
             map={map}
             infowindow={infowindow}
             marker={autoCompleteMarker}
-            setLocations={setLocations}
+            routes={routes}
+            setRoutes={setRoutes}
           />
-          <AutoCompleteInput
+          {/* <AutoCompleteInput
             index={1}
             map={map}
             infowindow={infowindow}
             marker={autoCompleteMarker}
-            setLocations={setLocations}
           />
           <AutoCompleteInput
             index={2}
             map={map}
             infowindow={infowindow}
             marker={autoCompleteMarker}
-            setLocations={setLocations}
-          />
-          <SearchBoxResult data={locations} />
-          <TogglePath
+          /> */}
+          <SearchBoxResult index={tabNumber} routes={routes} />
+          <AddPath
+            index={tabNumber}
             map={map}
-            locations={locations}
-            route={route}
-            setRoute={setRoute}
+            directionsService={directionsService}
+            routes={routes}
+            setRoutes={setRoutes}
+          />
+          <ClearPath
+            index={tabNumber}
+            map={map}
+            directionsService={directionsService}
+            routes={routes}
+            setRoutes={setRoutes}
           />
           <SearchNearByBtn
             map={map}
@@ -149,7 +162,17 @@ function App() {
             nearByLocation={nearByLocation}
             setNearByLocation={setNearByLocation}
           />
-          <Clicker clicker={clicker} setLocations={setLocations} />
+          <AddLocation
+            index={tabNumber}
+            clicker={clicker}
+            routes={routes}
+            setRoutes={setRoutes}
+          />
+          {/* <ToggleIndex
+            index={tabNumber}
+            routes={routes}
+            setTabNumber={setTabNumber}
+          /> */}
         </Grid>
         <Grid item xs={12} md={6}>
           <div style={{ width: 900, height: "85vh" }} id="map" />
