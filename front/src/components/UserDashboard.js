@@ -43,8 +43,8 @@ function a11yProps(index) {
 
 export default function UserDashboard() {
   const [value, setValue] = useState(0);
-  const [trip, setTrip] = useState([]);
-  const [user, setUser] = useState([]);
+  const [trip, setTrip] = useState(null);
+  const [userId, setUser] = useState("63f2e689e4d85d9d31430c92");
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -60,14 +60,23 @@ export default function UserDashboard() {
   // }
 
   useEffect(() => {
-    const result = JSON.parse(localStorage.getItem("user_info"));
-    setUser(result);
+    // const result = JSON.parse(localStorage.getItem("user_info"));
+    // console.log(result);
+    // setUser("63f2e689e4d85d9d31430c92");
     try {
-      const userId = user._id;
-      axios.get("/trips/" + userId).then((res)=>{
-        setTrip(res);
-      })
-      console.log(trip);
+      // const userId = user._id;
+
+      const config = {
+        server_host: "localhost",
+        server_port: 8800,
+      };
+      // http://${config.server_host}:${config.server_port}/api/
+
+      axios.get(`trips/${userId}`).then((res) => {
+        console.log(res.data);
+        setTrip(res.data);
+      });
+      // console.log(trip);
     } catch (err) {
       console.log(err);
     }
@@ -95,26 +104,17 @@ export default function UserDashboard() {
             },
           }}
         >
-          
-
-
-          
-          {/* {trip && trip.data.map((ele,index)=>{
-            return (
-              "test"
-              // <Card
-              // date={ele.date}
-              // start={ele.locations[0]}
-              // dest={ele.locations[ele.locations.length-1]}
-              // />
-            )
-          })} */}
-          <Card 
-          start="test"
-          dest="dest"
-          date="testDate"/>
-          <Card />
-          <Card />
+          {trip &&
+            trip.map((ele, index) => {
+              console.log(ele);
+              return (
+                <Card
+                  date={ele.date}
+                  start={ele.locations[0].name}
+                  dest={ele.locations[ele.locations.length - 1].name}
+                />
+              );
+            })}
         </Box>
       </TabPanel>
     </Box>
