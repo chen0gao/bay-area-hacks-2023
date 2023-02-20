@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { InputLabel, Input } from "@material-ui/core";
 
 function AutoCompleteInput({
+  title,
   index,
   map,
   infowindow,
@@ -50,6 +52,7 @@ function AutoCompleteInput({
 
       console.log(place);
 
+      // console.log(place.geometry.location.lng().toString());
       if (!(index in routes)) {
         routes[index] = { locations: [] };
       }
@@ -62,6 +65,7 @@ function AutoCompleteInput({
 
       routes[index].src = setRoutes({ ...routes });
 
+      console.log(place.geometry.location);
       marker.setPosition(place.geometry.location);
       marker.setVisible(true);
       // infowindowContent.children["place-name"].textContent = place.name;
@@ -73,14 +77,8 @@ function AutoCompleteInput({
 
   return (
     <>
-      <div id="pac-container">
-        <input
-          onClick={initial}
-          id={"pac-input" + index}
-          type="text"
-          placeholder="Enter a location"
-        />
-      </div>
+      <InputLabel>{title}</InputLabel>
+      <Input onClick={initial} id={"pac-input" + index} type="text" />
     </>
   );
 }

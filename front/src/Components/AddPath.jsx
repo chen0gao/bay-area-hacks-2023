@@ -1,14 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { createRoute } from "../gmapApi";
 
-function TogglePath({
-  index,
-  map,
-  locations,
-  directionsService,
-  routes,
-  setRoutes,
-}) {
+function TogglePath({ index, map, directionsService, routes, setRoutes }) {
   function clickEvent() {
     // console.log(routes);
     if (index in routes && routes[index].directionsRenderer) {

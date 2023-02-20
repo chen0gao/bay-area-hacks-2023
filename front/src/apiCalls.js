@@ -19,6 +19,6 @@ export const login = async (email,password) => {
   }catch(err){
     console.log(err);
     return "wrong password"
-  }
-  
+  } 
 }
+

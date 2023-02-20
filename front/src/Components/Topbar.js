@@ -27,7 +27,7 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import { useNavigate } from "react-router-dom";
 
-const pages = ["Home", "User"];
+const pages = ["Home"];
 const settings = ["Dashboard", "Logout"];
 
 //for input css
@@ -56,7 +56,7 @@ export default function Topbar() {
   };
 
   const handleOpenDashboard = () => {
-    console.log("test");
+    navigate("/user");
   };
 
   const handleLogout = () => {
@@ -92,7 +92,7 @@ export default function Topbar() {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                onClick={handleNavigatetoHomePage}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
                 {page}

@@ -6,11 +6,10 @@ import { Box, CssBaseline, Grid } from "@material-ui/core";
 import Header from "./components/Header/Header";
 import AddPath from "./components/AddPath";
 import ClearPath from "./components/ClearPath";
-import SearchNearByBtn from "./components/SearchNearByBtn";
-import AutoCompleteInput from "./components/AutoCompleteInput";
 import ToggleIndex from "./components/ToggleIndex";
 import AddLocation from "./components/AddLocation";
 import { config } from "./config";
+import InputForm from "./components/InputForm";
 
 function App() {
   const [tabNumber, setTabNumber] = useState(0);
@@ -23,6 +22,8 @@ function App() {
   const [autoCompleteMarker, setAutoCompleteMarker] = useState(null);
 
   const [routes, setRoutes] = useState({});
+  const [numTravellers, setNumTravellers] = useState("");
+  const [businessType, setBusinessType] = useState("");
 
   function onScriptLoad() {
     // Initializing Map components
@@ -44,6 +45,7 @@ function App() {
       map_,
       anchorPoint: new window.google.maps.Point(0, -29),
     });
+    marker.setMap(map_);
 
     setAutoCompleteMarker(marker);
 
@@ -116,29 +118,24 @@ function App() {
     <>
       <CssBaseline />
       <Header />
-      <Grid container spacing={3} style={{ width: "100%" }}>
-        <Grid item xs={12} md={6}>
-          {/* <Search /> */}
-          <AutoCompleteInput
+      <Grid container spacing={3} sx={{ overflow: "auto", maxHeight: "90vh%" }}>
+        <Grid item xs={12} md={3}>
+          <InputForm
+            // numTravellers={numTravellers}
+            setNumTravellers={setNumTravellers}
+            businessType={businessType}
+            setBusinessType={setBusinessType}
             index={tabNumber}
             map={map}
             infowindow={infowindow}
-            marker={autoCompleteMarker}
+            autoCompleteMarker={autoCompleteMarker}
             routes={routes}
             setRoutes={setRoutes}
+            nearByLocation={nearByLocation}
+            setNearByLocation={setNearByLocation}
+            placesService={placesService}
+            setClicker={setClicker}
           />
-          {/* <AutoCompleteInput
-            index={1}
-            map={map}
-            infowindow={infowindow}
-            marker={autoCompleteMarker}
-          />
-          <AutoCompleteInput
-            index={2}
-            map={map}
-            infowindow={infowindow}
-            marker={autoCompleteMarker}
-          /> */}
           <SearchBoxResult index={tabNumber} routes={routes} />
           <AddPath
             index={tabNumber}
@@ -154,14 +151,6 @@ function App() {
             routes={routes}
             setRoutes={setRoutes}
           />
-          <SearchNearByBtn
-            map={map}
-            infowindow={infowindow}
-            placesService={placesService}
-            setClicker={setClicker}
-            nearByLocation={nearByLocation}
-            setNearByLocation={setNearByLocation}
-          />
           <AddLocation
             index={tabNumber}
             clicker={clicker}
@@ -173,6 +162,9 @@ function App() {
             routes={routes}
             setTabNumber={setTabNumber}
           /> */}
+        </Grid>
+        <Grid item xs={12} md={3}>
+          <div>text</div>
         </Grid>
         <Grid item xs={12} md={6}>
           <div style={{ width: 900, height: "85vh" }} id="map" />
