@@ -17,12 +17,11 @@ import AutoCompleteInput from "./components/AutoCompleteInput";
 import AddLocation from "./components/AddLocation";
 import useStyles from "./components/Header/styles";
 import { config } from "./config";
-import TripHistory from "./components/TripHistory";
 import InputForm from "./components/InputForm";
+import TravelMode from "./components/TravelMode";
 
 function Map() {
   const [tabNumber, setTabNumber] = useState(0);
-  const [locations, setLocations] = useState([]);
   const [clicker, setClicker] = useState({});
   const [placesService, setPlacesService] = useState(null);
   const [directionsService, setDirectionsService] = useState(null);
@@ -32,8 +31,7 @@ function Map() {
   const [autoCompleteMarker, setAutoCompleteMarker] = useState(null);
 
   const [routes, setRoutes] = useState({});
-  const [numTravellers, setNumTravellers] = useState("");
-  const [businessType, setBusinessType] = useState("");
+  const [travel, setTravel] = useState("Driving");
   const style = useStyles();
 
   function onScriptLoad() {
@@ -88,12 +86,12 @@ function Map() {
               });
               infowindow_.close();
               infowindow_.setPosition(place.geometry.location);
-              infowindowContent.children["place-icon"].src = place.icon;
-              infowindowContent.children["place-name"].textContent = place.name;
-              infowindowContent.children["place-id"].textContent =
-                place.place_id;
-              infowindowContent.children["place-address"].textContent =
-                place.formatted_address;
+              // infowindowContent.children["place-icon"].src = place.icon;
+              // infowindowContent.children["place-name"].textContent = place.name;
+              // infowindowContent.children["place-id"].textContent =
+              //   place.place_id;
+              // infowindowContent.children["place-address"].textContent =
+              //   place.formatted_address;
               infowindow_.open(map_);
             }
           });
@@ -124,17 +122,24 @@ function Map() {
       onScriptLoad();
     }
   }, []);
-
   return (
     <>
       <CssBaseline />
       <Grid container spacing={3} sx={{ overflow: "auto", maxHeight: "90vh%" }}>
         <Grid item xs={12} md={3} className={style.grid_container3}>
+          <TravelMode
+            index={0}
+            directionsService={directionsService}
+            routes={routes}
+            setRoutes={setRoutes}
+            setTravel={setTravel}
+          />
           <InputForm
             // numTravellers={numTravellers}
-            setNumTravellers={setNumTravellers}
-            businessType={businessType}
-            setBusinessType={setBusinessType}
+            travel={travel}
+            tabNumber={tabNumber}
+            directionsService={directionsService}
+            clicker={clicker}
             index={tabNumber}
             map={map}
             infowindow={infowindow}
@@ -145,27 +150,6 @@ function Map() {
             setNearByLocation={setNearByLocation}
             placesService={placesService}
             setClicker={setClicker}
-          />
-          <AutoCompleteInput
-            index={tabNumber}
-            map={map}
-            infowindow={infowindow}
-            marker={autoCompleteMarker}
-            routes={routes}
-            setRoutes={setRoutes}
-          />
-          <AddPath
-            index={0}
-            map={map}
-            directionsService={directionsService}
-            routes={routes}
-            setRoutes={setRoutes}
-          />
-          <AddLocation
-            index={0}
-            clicker={clicker}
-            routes={routes}
-            setRoutes={setRoutes}
           />
         </Grid>
         <Grid item xs={12} md={3}>
@@ -188,11 +172,11 @@ function Map() {
             <div id="sidebar"></div>
             <div id="infowindow-content">
               {/* <img id="place-icon" src="" height="16" width="16" /> */}
-              <span id="place-name" class="title"></span>
+              {/* <span id="place-name" class="title"></span>
               <br />
-              Place ID <span id="place-id"></span>
+               <span id="place-id"></span>
               <br />
-              <span id="place-address"></span>
+              <span id="place-address"></span> */}
             </div>
           </Card>
         </Grid>
@@ -204,7 +188,7 @@ function Map() {
               paddingRight: "10px",
               paddingLeft: "10px",
               width: "100%",
-              maxWidth: 700,
+              maxWidth: 750,
               bgcolor: "background.paper",
               position: "relative",
               height: "120vh",
@@ -213,7 +197,8 @@ function Map() {
               "& ul": { padding: 0 },
             }}
           >
-            <div style={{ width: 900, height: "85vh" }} id="map" />
+            <div style={{ width: 730, height: "85vh" }} id="map"></div>
+            <div />
           </Card>
         </Grid>
       </Grid>
