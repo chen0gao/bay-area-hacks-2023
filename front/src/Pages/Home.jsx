@@ -5,7 +5,7 @@ import axios from "axios";
 import Map from "../Map";
 
 export default function Home() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({});
   
   const navigate = useNavigate();
   //user Id can be get as: const user = localStorage.getItem("user_info");
