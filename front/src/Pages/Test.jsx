@@ -7,6 +7,8 @@ export default function Home() {
   const [user, setUser] = useState([]);
   
   const navigate = useNavigate();
+  //user Id can be get as: const user = localStorage.getItem("user_info");
+  //user.userId
   const userId = "63f1850c5ee346cc22311b54";
   const tripId = "63f29f4cfeec6927c7b387b0";
   const trip = {
@@ -36,6 +38,7 @@ export default function Home() {
     navigate("/login");
   }
 
+  //post trip
   const postTripHandler = () => {
     try{
       console.log(axios.post(`/trips/${userId}`, trip));
@@ -44,6 +47,7 @@ export default function Home() {
     }
   }
 
+  //delete trip by id
   const deleteTripHandler = () => {
     try{
       axios.delete(`/trips/${tripId}`);
@@ -53,6 +57,7 @@ export default function Home() {
 
   }
 
+  //get all trips by userId
   const getTripHandler = () =>{
     try{
       const res = axios.get("/trips/" + userId);

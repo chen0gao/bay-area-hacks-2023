@@ -52,7 +52,7 @@ export default function UserDashboard() {
         flexGrow: 1,
         bgcolor: "background.paper",
         display: "flex",
-        height: 224,
+        height: 110,
       }}
     >
       <Tabs
@@ -63,8 +63,8 @@ export default function UserDashboard() {
         aria-label="Vertical tabs example"
         sx={{ borderRight: 1, borderColor: "divider" }}
       >
-        <Tab label="Upcoming Trips" {...a11yProps(0)} />
-        <Tab label="Previous Trips" {...a11yProps(1)} />
+        <Tab label="Upcoming Trips"  />
+        <Tab label="Previous Trips"  />
       </Tabs>
       <TabPanel value={value} index={0}>
         <Box
