@@ -48,7 +48,7 @@ export default function UserDashboard() {
       }}
     >
       <Box component="main" sx={{ p: 3 }}>
-        <Toolbar />
+
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
         {trip &&
           trip.map((ele, index) => {
