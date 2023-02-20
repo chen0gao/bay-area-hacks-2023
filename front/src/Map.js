@@ -189,11 +189,11 @@ function Map() {
             <div id="sidebar"></div>
             <div id="infowindow-content">
               {/* <img id="place-icon" src="" height="16" width="16" /> */}
-              <span id="place-name" class="title"></span>
+              {/* <span id="place-name" class="title"></span>
               <br />
-              Place ID <span id="place-id"></span>
+               <span id="place-id"></span>
               <br />
-              <span id="place-address"></span>
+              <span id="place-address"></span> */}
             </div>
           </Card>
         </Grid>
