@@ -1,11 +1,16 @@
+import styles from "./Header/styles";
+import useStyles from './Header/styles';
+import { Button } from '@mui/material';
+
 function Clicker({ clicker, setLocations }) {
+  const style = useStyles();
   function clickEvent() {
     console.log(clicker);
     setLocations((locations) => [...locations, clicker]);
   }
   return (
     <>
-      <button onClick={clickEvent}>Add current point to location</button>
+       <Button onClick={clickEvent} variant="contained" type="button" id="b3" value={"Find "} className={style.search}>Add To Path</Button>
     </>
   );
 }

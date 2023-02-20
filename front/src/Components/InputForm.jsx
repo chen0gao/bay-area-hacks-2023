@@ -11,16 +11,16 @@ import LocalBarIcon from '@mui/icons-material/LocalBar';
 import SportsHandballIcon from '@mui/icons-material/SportsHandball';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
+import Clicker from "./Clicker";
 
 
 
 // import { IconButton } from '@mui/material';
+//map,infowindow,autoCompleteMarker,setLocations,
 
-const InputForm = ({ numTravellers, setNumTravellers, businessType, setBusinessType, map,infowindow,autoCompleteMarker,setLocations }) => { 
+const InputForm = ({ numTravellers, setNumTravellers, businessType, setBusinessType, clicker, setLocations}) => { 
     const style = useStyles();
     const handleChange = (e) => setBusinessType(e.target.value)
-    console.log(businessType);
-    console.log(numTravellers)
     
     return (
         <>
@@ -66,13 +66,13 @@ const InputForm = ({ numTravellers, setNumTravellers, businessType, setBusinessT
             <div class="grid-item">
             <FormControl className={style.grid_container}>
                         <Box display="flex">
-                        <AutoCompleteInput
+                        {/* <AutoCompleteInput
             index={0}
             map={map}
             infowindow={infowindow}
             marker={autoCompleteMarker}
             setLocations={setLocations}
-          />
+          /> */}
                 <InputLabel className={style.inputRoot}>Num Travellers</InputLabel>
                 <Select value={numTravellers} onChange={(e)=>setNumTravellers(e.target.value)} className={style.inputInput}>
                     <MenuItem value={1}>1</MenuItem>
@@ -94,10 +94,11 @@ const InputForm = ({ numTravellers, setNumTravellers, businessType, setBusinessT
                  <InputLabel>destination location</InputLabel>
                 <Input id="pac-input-dest" type="text" className={style.inputInput}/>
                 </FormControl>
-                <FormControl className={ style.grid_container}>
-                <Button onClick={handleChange} variant="contained" startIcon={<SportsHandballIcon />} type="button" id="b3" value={"Find "} className={style.search}>Toggle Path</Button>
-                <Button onClick={handleChange} variant="contained" startIcon={<SportsHandballIcon />} type="button" id="b3" value={"Sport"} className={style.search}>Sport</Button>
-                <Button onClick={handleChange} variant="contained" startIcon={<SportsHandballIcon />} type="button" id="b3" value={"Sport"} className={style.search}>Sport</Button>
+                <FormControl className={style.grid_container}>
+                <Clicker clicker={clicker} setLocations={setLocations} />
+                <Button onClick={handleChange} variant="contained" type="button" id="b3" value={"Find "} className={style.search}>Toggle Path</Button>
+                    <Button onClick={handleChange} variant="contained" type="button" id="b3" value={"Sport"} className={style.search}> Seach Nearby Business</Button>
+                <Button onClick={handleChange} variant="contained" type="button" id="b3" value={"Sport"} className={style.search}>Add Point to Trip</Button>
                 </FormControl>
             </Card>
             </>

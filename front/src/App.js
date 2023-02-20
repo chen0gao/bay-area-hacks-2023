@@ -118,14 +118,19 @@ function App() {
       <Grid container spacing={3} sx={{ overflow: 'auto', maxHeight: '90vh%' }}>
         <Grid item xs={12} md={3}>
           <InputForm numTravellers={numTravellers} setNumTravellers={setNumTravellers}
-            businessType={businessType} setBusinessType={setBusinessType} />
-          <AutoCompleteInput
+            businessType={businessType} setBusinessType={setBusinessType} index={0}
+            map={map}
+            infowindow={infowindow}
+            marker={autoCompleteMarker}
+            setLocations={setLocations} />
+
+          {/* <AutoCompleteInput
             index={0}
             map={map}
             infowindow={infowindow}
             marker={autoCompleteMarker}
             setLocations={setLocations}
-          />
+          /> */}
           <AutoCompleteInput
             index={1}
             map={map}
