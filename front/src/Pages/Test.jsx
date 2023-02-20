@@ -12,9 +12,9 @@ export default function Home() {
   const trip = {
     "date":"2023-05-20",
     "locations":[
-      {"name":"new york", "latitude":2, "logtitude":2},
-      {"name":"new york", "latitude":3, "logtitude":3},
-      {"name":"new york", "latitude":4, "logtitude":4}
+      {"name":"new york", "latitude":2, "longtitude":2},
+      {"name":"new york", "latitude":3, "longtitude":3},
+      {"name":"new york", "latitude":4, "longtitude":4}
     ]
     }
   
