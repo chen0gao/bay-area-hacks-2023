@@ -71,11 +71,9 @@ export default function Topbar() {
             noWrap
             component="a"
             sx={{
-              mr: 2,
+              
               display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
+              
               color: "inherit",
               textDecoration: "none",
             }}
@@ -88,7 +86,7 @@ export default function Topbar() {
             <Button
               key="Home"
               onClick={handleNavigatetoHomePage}
-              sx={{ my: 2, color: "white", display: "block" }}
+              sx={{ color: "white", display: "block" }}
             >
               Home
             </Button>
@@ -96,7 +94,7 @@ export default function Topbar() {
             <Button
               key="Dashboard"
               onClick={handleOpenDashboard}
-              sx={{ my: 2, color: "white", display: "block" }}
+              sx={{  color: "white", display: "block" }}
             >
               Dashboard
             </Button>
