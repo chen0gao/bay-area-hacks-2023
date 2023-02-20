@@ -1,6 +1,15 @@
 import React, { useEffect, useState } from "react";
+import { InputLabel, Input } from "@material-ui/core";
 
-function AutoCompleteInput({ index, map, infowindow, marker, setLocations }) {
+function AutoCompleteInput({
+  title,
+  index,
+  map,
+  infowindow,
+  marker,
+  routes,
+  setRoutes,
+}) {
   let isLoading = false;
 
   function initial() {
@@ -18,10 +27,10 @@ function AutoCompleteInput({ index, map, infowindow, marker, setLocations }) {
       options
     );
 
+    const infowindowContent = document.getElementById("infowindow-content");
     autocomplete.bindTo("bounds", map);
 
     autocomplete.addListener("place_changed", () => {
-      infowindow.close();
       marker.setVisible(false);
 
       const place = autocomplete.getPlace();
@@ -44,34 +53,37 @@ function AutoCompleteInput({ index, map, infowindow, marker, setLocations }) {
       console.log(place);
 
       // console.log(place.geometry.location.lng().toString());
-      setLocations((locations) => [
-        ...locations,
-        {
-          name: place.name,
-          lat: place.geometry.location.toJSON().lat,
-          lng: place.geometry.location.toJSON().lng,
-        },
-      ]);
+      if (!(index in routes)) {
+        routes[index] = { locations: [] };
+      }
 
+      routes[index].locations.push({
+        name: place.name,
+        lat: place.geometry.location.toJSON().lat,
+        lng: place.geometry.location.toJSON().lng,
+      });
+
+      setRoutes({ ...routes });
+
+      console.log(place.geometry.location);
       marker.setPosition(place.geometry.location);
       marker.setVisible(true);
-      // infowindowContent.children["place-name"].textContent = place.name;
-      // infowindowContent.children["place-address"].textContent =
-      // place.formatted_address;
+      infowindow.setPosition(place.geometry.location);
+
+      infowindow.close();
+      infowindowContent.children["place-icon"].src = place.icon;
+      infowindowContent.children["place-name"].textContent = place.name;
+      infowindowContent.children["place-id"].textContent = place.place_id;
+      infowindowContent.children["place-address"].textContent =
+        place.formatted_address;
       infowindow.open(map, marker);
     });
   }
 
   return (
     <>
-      <div id="pac-container">
-        <input
-          onClick={initial}
-          id={"pac-input" + index}
-          type="text"
-          placeholder="Enter a location"
-        />
-      </div>
+      <InputLabel>{title}</InputLabel>
+      <Input onClick={initial} id={"pac-input" + index} type="text" />
     </>
   );
 }
