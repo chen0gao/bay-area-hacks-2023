@@ -5,6 +5,8 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const bull = (
   <Box
@@ -15,7 +17,16 @@ const bull = (
   </Box>
 );
 
-export default function BasicCard({date, start, dest}) {
+
+export default function BasicCard({date, start, dest, tripId}) {
+  const navigate = useNavigate();
+  const handleDelete = () => {
+    try{
+      axios.delete(`/trips/${tripId}`);
+    }catch(err){
+      console.log(err);
+    }
+  }
   return (
     <Card sx={{ minWidth: 275 }}>
       <CardContent>
@@ -35,7 +46,9 @@ export default function BasicCard({date, start, dest}) {
       </CardContent>
       <CardActions>
         <Button size="small">Learn More</Button>
+        <Button size="small" onClick={handleDelete}>Delete Trip</Button> 
       </CardActions>
+      
     </Card>
   );
 }

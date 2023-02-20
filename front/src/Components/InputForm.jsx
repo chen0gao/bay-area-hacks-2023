@@ -264,7 +264,11 @@ const InputForm = ({
           "& ul": { padding: 0 },
         }}
       >
+<<<<<<< HEAD
         <TripHistory routes={routes} />
+=======
+        <TripHistory routes={routes} setRoutes={setRoutes} />
+>>>>>>> c9edd97274017624cd5d10f3b17fee792e1a9041
       </Card>
     </>
   );

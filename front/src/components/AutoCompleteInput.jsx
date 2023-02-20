@@ -27,10 +27,10 @@ function AutoCompleteInput({
       options
     );
 
+    const infowindowContent = document.getElementById("infowindow-content");
     autocomplete.bindTo("bounds", map);
 
     autocomplete.addListener("place_changed", () => {
-      infowindow.close();
       marker.setVisible(false);
 
       const place = autocomplete.getPlace();
@@ -63,14 +63,19 @@ function AutoCompleteInput({
         lng: place.geometry.location.toJSON().lng,
       });
 
-      routes[index].src = setRoutes({ ...routes });
+      setRoutes({ ...routes });
 
       console.log(place.geometry.location);
       marker.setPosition(place.geometry.location);
       marker.setVisible(true);
-      // infowindowContent.children["place-name"].textContent = place.name;
-      // infowindowContent.children["place-address"].textContent =
-      // place.formatted_address;
+      infowindow.setPosition(place.geometry.location);
+
+      infowindow.close();
+      infowindowContent.children["place-icon"].src = place.icon;
+      infowindowContent.children["place-name"].textContent = place.name;
+      infowindowContent.children["place-id"].textContent = place.place_id;
+      infowindowContent.children["place-address"].textContent =
+        place.formatted_address;
       infowindow.open(map, marker);
     });
   }

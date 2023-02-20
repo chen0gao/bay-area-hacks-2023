@@ -1,18 +1,13 @@
 import "./static/App.css";
 import React, { useState, useEffect } from "react";
-import SearchBoxResult from "./components/SearchBoxResult";
-import Trip from "./components/Trip/Trip";
 import { Box, CssBaseline, Grid, Card } from "@material-ui/core";
 // import SearchIcon from '@material-ui/icons/Search';
 import Header from "./components/Header/Header";
 import AddPath from "./components/AddPath";
-import SearchNearByBtn from "./components/SearchNearByBtn";
 import AutoCompleteInput from "./components/AutoCompleteInput";
 import AddLocation from "./components/AddLocation";
-import styles from "./components/Header/styles";
 import useStyles from "./components/Header/styles";
 import { config } from "./config";
-import TripHistory from "./components/TripHistory";
 import InputForm from "./components/InputForm";
 
 function Map() {
@@ -141,53 +136,28 @@ function Map() {
                         setNearByLocation={setNearByLocation}
                         placesService={placesService}
                         setClicker={setClicker}
-                        directionsService={directionsService}
-                        clicker={clicker}
                     />
-
-                    {/* <AutoCompleteInput
-            index={0}
-            map={map}
-            infowindow={infowindow}
-            marker={autoCompleteMarker}
-            setLocations={setLocations}
-          /> */}
                     <AutoCompleteInput
-                        index={1}
+                        index={tabNumber}
                         map={map}
                         infowindow={infowindow}
                         marker={autoCompleteMarker}
-                        setLocations={setLocations}
+                        routes={routes}
+                        setRoutes={setRoutes}
                     />
-                    {/* <AutoCompleteInput
-            index={2}
-            map={map}
-            infowindow={infowindow}
-            marker={autoCompleteMarker}
-            setLocations={setLocations}
-          /> */}
-                    {/* <SearchBoxResult index={tabNumber} routes={routes} /> */}
-                    {/* <AddPath
+                    <AddPath
                         index={0}
                         map={map}
                         directionsService={directionsService}
                         routes={routes}
                         setRoutes={setRoutes}
-                    /> */}
-                    {/* <SearchNearByBtn
-            map={map}
-            infowindow={infowindow}
-            placesService={placesService}
-            setClicker={setClicker}
-            nearByLocation={nearByLocation}
-            setNearByLocation={setNearByLocation}
-          /> */}
-                    {/* <AddLocation
+                    />
+                    <AddLocation
                         index={0}
                         clicker={clicker}
                         routes={routes}
                         setRoutes={setRoutes}
-                    /> */}
+                    />
                 </Grid>
                 <Grid item xs={12} md={3}>
                     <Card
@@ -208,7 +178,7 @@ function Map() {
                     >
                         <div id="sidebar"></div>
                         <div id="infowindow-content">
-                            <img id="place-icon" src="" height="16" width="16" />
+                            {/* <img id="place-icon" src="" height="16" width="16" /> */}
                             <span id="place-name" class="title"></span>
                             <br />
                             Place ID <span id="place-id"></span>
