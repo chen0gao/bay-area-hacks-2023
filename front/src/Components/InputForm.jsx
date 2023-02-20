@@ -23,8 +23,10 @@ import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
 import AutoCompleteInput from "./AutoCompleteInput";
 import SearchNearByBtn from "./SearchNearByBtn";
+import TripHistory from "./TripHistory";
 
 // import { IconButton } from '@mui/material';
+//map,infowindow,autoCompleteMarker,setLocations,
 
 const InputForm = ({
   numTravellers,
@@ -115,7 +117,7 @@ const InputForm = ({
                   nearByLocation={nearByLocation}
                   setNearByLocation={setNearByLocation}
                   startIcon={<CameraAltIcon />}
-                  value={"Site"}
+                  value={"Park"}
                   className={style.small_btn}
                 />
               </div>
@@ -148,8 +150,8 @@ const InputForm = ({
             </div>
           </div>
         </div>
-        <div class="grid-item">
-          {/* <FormControl className={style.grid_container}>
+        {/* <div class="grid-item"> */}
+        {/* <FormControl className={style.grid_container}>
                 <Box display="flex">
                 <InputLabel className={style.inputRoot}>Num Travellers</InputLabel>
                 <Select value={numTravellers} onChange={(e)=>setNumTravellers(e.target.value)} className={style.inputInput}>
@@ -159,26 +161,66 @@ const InputForm = ({
                     <MenuItem value={4}>4</MenuItem>
                 </Select>
             </Box>
-                </FormControl> */}
-        </div>
-        {[...Array(numTravellers)].map((e, i) => (
-          <FormControl>
-            {/* Work on querySelector to getElementbyId for multipleids */}
-            {/* <Input id="pac-input" type="text" className={style.inputInput} /> */}
-            <AutoCompleteInput
-              title={"Input a location"}
-              index={tabNumber}
-              map={map}
-              infowindow={infowindow}
-              marker={autoCompleteMarker}
-              routes={routes}
-              setRoutes={setRoutes}
-              className={style.inputInput}
-            />
-          </FormControl>
-        ))}
-        <FormControl></FormControl>
+                </FormControl>
+            </div>
+            {[...Array(numTravellers)].map((e, i) =>
+              */}
+        <FormControl>
+          {/* Work on querySelector to getElementbyId for multipleids */}
+          <InputLabel>Source location</InputLabel>
+          <Input id="pac-input" type="text" className={style.inputInput} />
+        </FormControl>
+        <FormControl>
+          <InputLabel>destination location</InputLabel>
+          <Input id="pac-input-dest" type="text" className={style.inputInput} />
+        </FormControl>
+        <FormControl>
+          <div class="grid-container" className={style.grid_container2}>
+            <div class="grid-item">
+              <Button
+                onClick={handleChange}
+                variant="contained"
+                type="button"
+                id="b3"
+                value={"Find "}
+                className={style.search}
+              >
+                Toggle Path
+              </Button>
+            </div>
+            <div class="grid-item">
+              <Button
+                onClick={handleChange}
+                variant="contained"
+                type="button"
+                id="b3"
+                value={"Sport"}
+                className={style.search}
+              >
+                Add Point
+              </Button>
+            </div>
+          </div>
+        </FormControl>
       </Card>
+      {/* <Card
+        style={{
+          paddingTop: "20px",
+          paddingBottom: "20px",
+          paddingRight: "0px",
+          paddingLeft: "0px",
+          width: "100%",
+          maxWidth: 360,
+          bgcolor: "background.paper",
+          position: "relative",
+          height: "40vh",
+          overflow: "auto",
+          maxHeight: "90vh",
+          "& ul": { padding: 0 },
+        }}
+      >
+        <TripHistory routes={routes} />
+      </Card> */}
     </>
   );
 };

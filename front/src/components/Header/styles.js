@@ -42,6 +42,7 @@ export default makeStyles((theme) => ({
         flexDirection: 'column',
         justifyContent: 'space-between',
         maxWidth: '100%',
+        maxHeight: '50%',
         padding: '1em 1em 1.5em',
         borderRadius: '1px solid transparent',
     },
@@ -55,5 +56,19 @@ export default makeStyles((theme) => ({
         gridTemplateColumns: 'repeat(3, 1fr)',
         gridTemplateRows: 'repeat(2, 0.1fr)',
         gridGap: '5px',
+    },
+    grid_container2: {
+        paddingTop: '20px',
+        display: 'grid',
+        gridTemplateColumns: 'repeat(2, 1fr)',
+        gridTemplateRows: 'repeat(1, 0.1fr)',
+        gridGap: '7px',
+    },
+    grid_container3: {
+        paddingTop: '20px',
+        display: 'grid',
+        gridTemplateColumns: 'repeat(1, 1fr)',
+        gridTemplateRows: 'repeat(2, 0.1fr)',
+        gridGap: '7px',
     },
 }));

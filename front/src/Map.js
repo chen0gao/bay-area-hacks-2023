@@ -1,18 +1,23 @@
 import "./static/App.css";
 import React, { useState, useEffect } from "react";
 import SearchBoxResult from "./components/SearchBoxResult";
-import { Box, CssBaseline, Grid } from "@material-ui/core";
+import Trip from "./components/Trip/Trip";
+import { Box, CssBaseline, Grid, Card } from "@material-ui/core";
 // import SearchIcon from '@material-ui/icons/Search';
 import Header from "./components/Header/Header";
 import AddPath from "./components/AddPath";
-import ClearPath from "./components/ClearPath";
-import ToggleIndex from "./components/ToggleIndex";
+import SearchNearByBtn from "./components/SearchNearByBtn";
+import AutoCompleteInput from "./components/AutoCompleteInput";
 import AddLocation from "./components/AddLocation";
+import styles from "./components/Header/styles";
+import useStyles from "./components/Header/styles";
 import { config } from "./config";
+import TripHistory from "./components/TripHistory";
 import InputForm from "./components/InputForm";
 
-export default function Map() {
+function Map() {
   const [tabNumber, setTabNumber] = useState(0);
+  const [locations, setLocations] = useState([]);
   const [clicker, setClicker] = useState({});
   const [placesService, setPlacesService] = useState(null);
   const [directionsService, setDirectionsService] = useState(null);
@@ -24,6 +29,7 @@ export default function Map() {
   const [routes, setRoutes] = useState({});
   const [numTravellers, setNumTravellers] = useState("");
   const [businessType, setBusinessType] = useState("");
+  const style = useStyles();
 
   function onScriptLoad() {
     // Initializing Map components
@@ -115,11 +121,11 @@ export default function Map() {
   }, []);
 
   return (
-    <div>
-      test
-       <CssBaseline />
+    <>
+      <CssBaseline />
+      <Header />
       <Grid container spacing={3} sx={{ overflow: "auto", maxHeight: "90vh%" }}>
-        <Grid item xs={12} md={3}>
+        <Grid item xs={12} md={3} className={style.grid_container3}>
           <InputForm
             // numTravellers={numTravellers}
             setNumTravellers={setNumTravellers}
@@ -136,50 +142,102 @@ export default function Map() {
             placesService={placesService}
             setClicker={setClicker}
           />
-          <SearchBoxResult index={tabNumber} routes={routes} />
+
+          {/* <AutoCompleteInput
+            index={0}
+            map={map}
+            infowindow={infowindow}
+            marker={autoCompleteMarker}
+            setLocations={setLocations}
+          /> */}
+          <AutoCompleteInput
+            index={1}
+            map={map}
+            infowindow={infowindow}
+            marker={autoCompleteMarker}
+            setLocations={setLocations}
+          />
+          {/* <AutoCompleteInput
+            index={2}
+            map={map}
+            infowindow={infowindow}
+            marker={autoCompleteMarker}
+            setLocations={setLocations}
+          /> */}
+          {/* <SearchBoxResult index={tabNumber} routes={routes} /> */}
           <AddPath
-            index={tabNumber}
+            index={0}
             map={map}
             directionsService={directionsService}
             routes={routes}
             setRoutes={setRoutes}
           />
-          <ClearPath
-            index={tabNumber}
+          <SearchNearByBtn
             map={map}
-            directionsService={directionsService}
-            routes={routes}
-            setRoutes={setRoutes}
+            infowindow={infowindow}
+            placesService={placesService}
+            setClicker={setClicker}
+            nearByLocation={nearByLocation}
+            setNearByLocation={setNearByLocation}
           />
           <AddLocation
-            index={tabNumber}
+            index={0}
             clicker={clicker}
             routes={routes}
             setRoutes={setRoutes}
           />
-          <ToggleIndex
-            index={tabNumber}
-            routes={routes}
-            setTabNumber={setTabNumber}
-          />
         </Grid>
         <Grid item xs={12} md={3}>
-          <div>text</div>
+          <Card
+            style={{
+              paddingTop: "10px",
+              paddingBottom: "10px",
+              paddingRight: "10px",
+              paddingLeft: "10px",
+              width: "100%",
+              maxWidth: 360,
+              bgcolor: "background.paper",
+              position: "relative",
+              height: "120vh",
+              overflow: "auto",
+              maxHeight: "90vh",
+              "& ul": { padding: 0 },
+            }}
+          >
+            <div id="sidebar"></div>
+            <div id="infowindow-content">
+              <img id="place-icon" src="" height="16" width="16" />
+              <span id="place-name" class="title"></span>
+              <br />
+              Place ID <span id="place-id"></span>
+              <br />
+              <span id="place-address"></span>
+            </div>
+          </Card>
         </Grid>
         <Grid item xs={12} md={6}>
-          <div style={{ width: 900, height: "85vh" }} id="map" />
+          <Card
+            style={{
+              paddingTop: "10px",
+              paddingBottom: "10px",
+              paddingRight: "10px",
+              paddingLeft: "10px",
+              width: "100%",
+              maxWidth: 700,
+              bgcolor: "background.paper",
+              position: "relative",
+              height: "120vh",
+              overflow: "auto",
+              maxHeight: "90vh",
+              "& ul": { padding: 0 },
+            }}
+          >
+            <div style={{ width: 900, height: "85vh" }} id="map" />
+          </Card>
         </Grid>
       </Grid>
-      
-      <div id="sidebar"></div>
-      <div id="infowindow-content">
-        <img id="place-icon" src="" height="16" width="16" />
-        <span id="place-name" class="title"></span>
-        <br />
-        Place ID <span id="place-id"></span>
-        <br />
-        <span id="place-address"></span>
-      </div>
-    </div>
+    </>
   );
 }
+
+export default Map;
